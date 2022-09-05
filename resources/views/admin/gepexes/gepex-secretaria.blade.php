@@ -49,20 +49,36 @@
                                         <td> {{ $gepex->uid }} </td>
                                         <td> {{ $gepex->needs }} </td>
                                         <td> {{ $gepex->status }} </td>
-                                        <td> <span class="badge {{ setPriority($gepex->priority)->color }}">{{ setPriority($gepex->priority)->value }}</span> </td>
+                                        <td> <span
+                                                class="badge {{ setPriority($gepex->priority)->color }}">{{ setPriority($gepex->priority)->value }}</span>
+                                        </td>
                                         <td>
-                                            <a href="{{route('gepex.show',$gepex->id)}}" class="btn btn-info">
+                                            <a href="{{ route('gepex.show', $gepex->id) }}" class="btn btn-info">
                                                 <span class="glyphicon glyphicon-hand-up"></span> Visualizar</a>
 
 
                                         </td>
-                                        @if($gepex->status=='INICIADO')
-                                        <td><form action="{{route('gepex-enviar-aprovacao',$gepex->id)}}" method="post" class="form-group">
-                                             {!! csrf_field() !!}
-                                           <button class=" btn btn-primary"> Enviar para Aprovação</button>
-                                            </form>
+                                        @if ($gepex->status == 'INICIADO')
+                                            <td>
+                                                <form action="{{ route('gepex-enviar-aprovacao', $gepex->id) }}"
+                                                    method="post" class="form-group">
+                                                    {!! csrf_field() !!}
+                                                    <button class=" btn btn-primary"> Enviar para Aprovação</button>
+                                                </form>
 
-                                        </td>
+                                            </td>
+                                        @endif
+                                        @if ($gepex->status == 'APROVADO')
+                                            <td>
+                                                <a href="{{ route('gepex-defenir-etapas', $gepex->id) }}" class="btn btn-info">
+                                                    <span class="glyphicon glyphicon-hand-up"></span> Planejar Etapas</a>
+                                            </td>
+                                        @endif
+                                         @if ($gepex->status == 'Em Construção')
+                                            <td>
+                                                <a href="{{ route('gepex-ver-etapas', $gepex->id) }}" class="btn btn-info">
+                                                    <span class="glyphicon glyphicon-hand-up"></span> Ver Etapas</a>
+                                            </td>
                                         @endif
                                     </tr>
                                 @empty

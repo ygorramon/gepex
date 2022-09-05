@@ -87,7 +87,7 @@ class GepexController extends Controller
 
         $secretary->gepexes()->
         create([
-            'uid' => $secretary->initials.'4',
+            'uid' => $secretary->initials.'5',
             'needs' => $data['need'],
             'goals' => $data['goals'],
             'strategies' => $data['strategies'],
@@ -120,6 +120,21 @@ class GepexController extends Controller
      return redirect()->route('gepex-secretaria', $gepex->secretary->id);
     }
 
+
+    public function analisar_gepex($id, Request $request)
+    {
+        $gepex = Gepex::find($id);
+        if($request->status=='S'){
+            $request->status='APROVADO';
+        }
+        if ($request->status == 'N') {
+            $request->status = 'REPROVADO';
+        }
+        $gepex->update(['status' =>            $request->status,
+    'priority' =>$request->priority]);
+        return redirect()->route('gepex-secretaria', $gepex->secretary->id);
+    }
+    
  
     /**
      * Show the form for editing the specified resource.
@@ -165,4 +180,31 @@ class GepexController extends Controller
         $gepex = Gepex::find($id);
         return view('admin.gepexes.analise-gepex', compact('gepex'));
     }
+
+    public function defenir_etapas($id)
+    {
+        $gepex = Gepex::find($id);
+        $steps_todos = Step::all();
+        $steps_selecionados=$gepex->steps;
+       // dd($steps_selecionados);
+        return view('admin.gepexes.definir-etapas', compact('gepex','steps_todos', 'steps_selecionados'));
+    }
+    public function defenir_etapas_store($id, Request $request){
+        $gepex = Gepex::find($id);
+        $gepex->update(['status'=>'Em Construção']);
+        $gepex->steps()->sync($request->step_id);
+
+      return  redirect()->route('gepex.show', $gepex->id);
+    }
+
+    public function ver_etapas($id)
+    {
+        $gepex = Gepex::find($id);
+        $steps = $gepex->steps;
+        $gepex->steps()->updateExistingPivot(7, ['finished'=>1,'completion_date'=>now()]);
+
+
+        return view('admin.gepexes.ver-etapas', compact('gepex','steps'));
+    }
+
 }

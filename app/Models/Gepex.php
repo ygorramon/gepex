@@ -14,4 +14,9 @@ class Gepex extends Model
     {
         return $this->belongsTo(\App\Models\Secretary::class);
     }
+
+    public function steps()
+    {
+        return $this->belongsToMany(\App\Models\Step::class, 'gepex_step')->withPivot('finished');
+    }
 }

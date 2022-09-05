@@ -20,3 +20,18 @@ function setPriority($value){
     }
     return (object) $data;
 }
+
+function setFinished($value)
+{
+
+    if ($value == 0) {
+        $data['value'] = "INCOMPLETA";
+        $data['color'] = "bg-red";
+    }
+    if ($value == 1) {
+        $data['value'] = "COMPLETA";
+        $data['color'] = "bg-green";
+    }
+   
+    return (object) $data;
+}

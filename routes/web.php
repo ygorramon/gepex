@@ -31,6 +31,10 @@ Route::post('/gepex/{id}/secretaria/create', 'GepexController@store')->middlewar
 Route::post('/gepex/{id}/enviar-aprovação','GepexController@enviar_aprovacao')->middleware('auth')->name('gepex-enviar-aprovacao');
 Route::get('/gepex-enviadas','GepexController@gepex_enviadas')->middleware('auth')->name('gepex-enviadas');
 Route::get('/analise-gepex/{id}','GepexController@analise_gepex')->middleware('auth')->name('gepex-analise');
+Route::post('/analise-gepex/{id}', 'GepexController@analisar_gepex')->middleware('auth')->name('gepex-analise-post');
+Route::get('/gepex/{id}/definir_etapas', 'GepexController@defenir_etapas')->middleware('auth')->name('gepex-defenir-etapas');
+Route::post('/gepex/{id}/definir_etapas', 'GepexController@defenir_etapas_store')->middleware('auth')->name('gepex-defenir-etapas-post');
+Route::get('/gepex/{id}/ver_etapas', 'GepexController@ver_etapas')->middleware('auth')->name('gepex-ver-etapas');
 
 });
 
