@@ -258,6 +258,12 @@ return [
             'icon' => 'fas fa-duotone fa-map-pin',
             
         ],
+        [
+            'text' => 'GEPEXs Enviadas',
+            'url'  => 'admin/gepex-enviadas',
+            'icon' => 'fas fa-duotone fa-map-pin',
+            
+        ],
     ],
 
     /*

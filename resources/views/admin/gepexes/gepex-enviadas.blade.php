@@ -9,18 +9,15 @@
             <div class="box">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">GEPEX da SECRETARIA - {{ $secretary->name }}</li>
+                  
 
                 </ol>
 
 
                 <div class="row content">
                     <div class="col-sm-12 ">
-                        <h3>GEPEX's - {{ $secretary->name }}</h3>
-                        <div class="col-sm-3">
-                            <a href="{{ route('gepex-secretaria-create', $secretary->id) }}" class="btn btn-primary"> <i
-                                    class="fa fa-user-plus"></i>&ensp;Adicionar GEPEX </a>
-                        </div>
+                        <h3>GEPEX's Enviadas para aprovação</h3>
+                        
                         <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
                             aria-describedby="example2_info">
                             <thead>
@@ -31,6 +28,9 @@
                                     <th width="50%" class="sorting" tabindex="0" aria-controls="example2"
                                         rowspan="1" colspan="1" aria-label="city: activate to sort column ascending">
                                         Necessidade</th>
+                                        <th width="10%" class="sorting" tabindex="0" aria-controls="example2"
+                                        rowspan="1" colspan="1" aria-label="city: activate to sort column ascending">
+                                        Secretaria</th>
                                     <th width="10%" class="sorting" tabindex="0" aria-controls="example2"
                                         rowspan="1" colspan="1" aria-label="city: activate to sort column ascending">
                                         STATUS</th>
@@ -48,10 +48,11 @@
 
                                         <td> {{ $gepex->uid }} </td>
                                         <td> {{ $gepex->needs }} </td>
+                                        <td> {{ $gepex->secretary->name }} </td>
                                         <td> {{ $gepex->status }} </td>
-                                        <td> {{ $gepex->priority }} </td>
+                                        <td> <span class="badge {{ setPriority($gepex->priority)->color }}">{{ setPriority($gepex->priority)->value }}</span> </td>
                                         <td>
-                                            <a href="{{route('gepex.show',$gepex->id)}}" class="btn btn-info">
+                                            <a href="{{route('gepex-analise',$gepex->id)}}" class="btn btn-info">
                                                 <span class="glyphicon glyphicon-hand-up"></span> Analisar</a>
 
 

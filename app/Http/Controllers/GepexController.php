@@ -87,7 +87,7 @@ class GepexController extends Controller
 
         $secretary->gepexes()->
         create([
-            'uid' => $secretary->initials.'5',
+            'uid' => $secretary->initials.'4',
             'needs' => $data['need'],
             'goals' => $data['goals'],
             'strategies' => $data['strategies'],
@@ -153,5 +153,16 @@ class GepexController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function gepex_enviadas(){
+        $gepexes = Gepex::where('status','ENVIADO PARA ANÁLISE')->get();
+        return view ('admin.gepexes.gepex-enviadas',compact('gepexes'));
+    }
+
+    public function analise_gepex($id)
+    {
+        $gepex = Gepex::find($id);
+        return view('admin.gepexes.analise-gepex', compact('gepex'));
     }
 }

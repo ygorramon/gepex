@@ -49,7 +49,7 @@
                                         <td> {{ $gepex->uid }} </td>
                                         <td> {{ $gepex->needs }} </td>
                                         <td> {{ $gepex->status }} </td>
-                                        <td> {{ setPriority($gepex->priority) }} </td>
+                                        <td> <span class="badge {{ setPriority($gepex->priority)->color }}">{{ setPriority($gepex->priority)->value }}</span> </td>
                                         <td>
                                             <a href="{{route('gepex.show',$gepex->id)}}" class="btn btn-info">
                                                 <span class="glyphicon glyphicon-hand-up"></span> Visualizar</a>
@@ -57,9 +57,9 @@
 
                                         </td>
                                         @if($gepex->status=='INICIADO')
-                                        <td><form action="{{route('gepex-enviar-aprovacao',$gepex->id)}}" method="post">
+                                        <td><form action="{{route('gepex-enviar-aprovacao',$gepex->id)}}" method="post" class="form-group">
                                              {!! csrf_field() !!}
-                                           <button> Enviar para Aprovação</button>
+                                           <button class=" btn btn-primary"> Enviar para Aprovação</button>
                                             </form>
 
                                         </td>
