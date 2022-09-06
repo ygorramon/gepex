@@ -17,6 +17,6 @@ class Gepex extends Model
 
     public function steps()
     {
-        return $this->belongsToMany(\App\Models\Step::class, 'gepex_step')->withPivot('finished');
+        return $this->belongsToMany(\App\Models\Step::class, 'gepex_step')->withPivot('finished','id','completion_date');
     }
 }

@@ -35,3 +35,7 @@ function setFinished($value)
    
     return (object) $data;
 }
+
+function setDate($value){
+    return Carbon\Carbon::parse($value)->format('d/m/Y');
+}

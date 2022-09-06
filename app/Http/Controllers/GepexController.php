@@ -87,7 +87,7 @@ class GepexController extends Controller
 
         $secretary->gepexes()->
         create([
-            'uid' => $secretary->initials.'5',
+            'uid' => $secretary->initials.'7',
             'needs' => $data['need'],
             'goals' => $data['goals'],
             'strategies' => $data['strategies'],
@@ -201,10 +201,18 @@ class GepexController extends Controller
     {
         $gepex = Gepex::find($id);
         $steps = $gepex->steps;
-        $gepex->steps()->updateExistingPivot(7, ['finished'=>1,'completion_date'=>now()]);
 
 
         return view('admin.gepexes.ver-etapas', compact('gepex','steps'));
+    }
+    public function concluir_etapa($id,$etapaid)
+    {
+        $gepex = Gepex::find($id);
+        $steps = $gepex->steps;
+        $gepex->steps()->updateExistingPivot($etapaid, ['finished'=>1,'completion_date'=>now()]);
+
+
+        return view('admin.gepexes.ver-etapa', compact('gepex','steps'));
     }
 
 }

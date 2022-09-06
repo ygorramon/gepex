@@ -29,6 +29,8 @@
                                     
                                 <th tabindex="0" aria-controls="example2" rowspan="1" 
                                     aria-label="Action: activate to sort column ascending">Situação</th>
+                                <th tabindex="0" aria-controls="example2" rowspan="1" 
+                                    aria-label="Action: activate to sort column ascending">Data de Conclusão</th>
 
                                 <th tabindex="0" aria-controls="example2" rowspan="1" 
                                     aria-label="Action: activate to sort column ascending">Ação</th>
@@ -40,9 +42,10 @@
 
                                     <td> {{ $step->name }} </td>
                                   <td> <span class="badge {{ setfinished($step->pivot->finished)->color }}">{{ setfinished($step->pivot->finished)->value }} </span></td>
+                                  <td> {{ setDate($step->pivot->completion_date) }} </td>
 
                                     <td>
-                                       {{$step->pivot->step_id}} 
+                                       <a class="btn btn-primary" href="{{route('concluir-etapa', [$gepex->id, $step->id])}}"> Concluir Etapa</a> 
 
                                     </td>
                                 </tr>

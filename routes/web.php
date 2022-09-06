@@ -35,7 +35,7 @@ Route::post('/analise-gepex/{id}', 'GepexController@analisar_gepex')->middleware
 Route::get('/gepex/{id}/definir_etapas', 'GepexController@defenir_etapas')->middleware('auth')->name('gepex-defenir-etapas');
 Route::post('/gepex/{id}/definir_etapas', 'GepexController@defenir_etapas_store')->middleware('auth')->name('gepex-defenir-etapas-post');
 Route::get('/gepex/{id}/ver_etapas', 'GepexController@ver_etapas')->middleware('auth')->name('gepex-ver-etapas');
-
+Route::get('/gepex/{id}/etapa/{etapaid}/concluir', 'GepexController@concluir_etapa')->middleware('auth')->name('concluir-etapa');
 });
 
 Auth::routes();
