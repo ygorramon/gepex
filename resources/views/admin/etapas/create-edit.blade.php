@@ -39,9 +39,14 @@
     </div>
    
     </div>
-     <div class="row">
+    <div class="row">
+        
+    <div class="form-group col-md-12">
+        <label >Descrição da Etapa:</label>
+        <textarea  rows="10"  name="description" required="" class="form-control">{{$step->description ?? ''}}</textarea>
+    </div>
    
-     </div>
+    </div>
    
     
     <div class="row">

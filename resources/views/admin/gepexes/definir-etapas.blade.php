@@ -47,8 +47,8 @@
                        @empty @endforelse
                                                     value="{{ $step->id }}">
                                             </td>
-                                            <td>
-                                                {{ $step->name }}</td>
+                                            <td >
+                                                <spam class="example"  data-toggle="tooltip"  data-placement="right" title="{{$step->description}}" >{{ $step->name }}</spam></td>
 
                                         </tr>
                                     @empty
@@ -58,10 +58,16 @@
                                <button class=" btn btn-primary"> Enviar</button>
                         </form>
 
-                                                 
+                           
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @section('js')
+    <script>
+    $('.example').tooltip()
+    </script>
+    @endsection
+
 @stop

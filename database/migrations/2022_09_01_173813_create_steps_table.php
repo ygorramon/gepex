@@ -16,6 +16,8 @@ class CreateStepsTable extends Migration
         Schema::create('steps', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 155)->unique();
+            $table->text('description')->nullable();
+
             $table->timestamps();
         });
     }

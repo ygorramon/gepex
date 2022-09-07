@@ -71,7 +71,7 @@ class StepController extends Controller
 
         Step::create([
             'name' => $data['name'],
-          
+            'description' => $data['description'],
 
         ]);
 
@@ -156,6 +156,7 @@ class StepController extends Controller
         $step = Step::find($id);
         $update = $step->update([
             'name' => $dataForm['name'],
+            'description' => $dataForm['description'],
           
         ]);
         if ($update)
