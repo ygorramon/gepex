@@ -8,7 +8,7 @@ use App\Models\Step;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 class GepexController extends Controller
 {
     /**
@@ -85,9 +85,12 @@ class GepexController extends Controller
                 ->withInput();
         }
 
+        $uid = IdGenerator::generate(['table' => 'gepexes','field'=>'uid', 'length' => 10, 'prefix' =>$secretary->initials.'-']);
+
+
         $secretary->gepexes()->
         create([
-            'uid' => $secretary->initials.'7',
+            'uid' =>   $uid,
             'needs' => $data['need'],
             'goals' => $data['goals'],
             'strategies' => $data['strategies'],
