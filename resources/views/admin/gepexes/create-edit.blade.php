@@ -45,10 +45,9 @@
         <label >Nível de Prioridade:</label>
        <select name="priority" class="form-control">
                 <option ">Selecione</option>
-        <option value="1" style="background-color:rgb(255, 255, 0); color:black">COMPLEMENTAR</option>
-        <option value="2" style="background-color:rgb(200, 162, 200); color:black">NORMAL</option>
-        <option value="3" style="background-color:rgb(0, 0, 255); color:rgb(255, 255, 255)">SETORIAL</option>
-        <option value="4" style="background-color:rgb(255, 0, 0); color:black">PRIORITÁRIO</option>
+        
+        <option value="1" style="background-color:rgb(0, 0, 255); color:rgb(255, 255, 255)">SETORIAL</option>
+        <option value="2" style="background-color:rgb(255, 0, 0); color:black">PRIORITÁRIO</option>
         
 
             </select> 

@@ -1,8 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Gerência TI')
 
 @section('content_header')
+<div class="card">
+
+        <div class="card-body">
 <div class="box">
 
     <ol class="breadcrumb">
@@ -34,9 +36,9 @@
                                             </tr>
                 </thead>
                 <tbody>
-                    @forelse($secretaries as $secretary)
+                    @forelse($user->secretaries as $secretary)
                     <tr role="row" class="odd">
-                        <td>{{$secretary->nome}} </td>
+                        <td>{{$secretary->name}} </td>
                                             </tr>
                     @empty
                     <tr><td colspan="3">Nenhuma Secretaria</td></tr>
@@ -66,5 +68,6 @@
           <br>
 </div>
 </div>
-
+</div>
+        </div>
 @stop

@@ -1,6 +1,5 @@
 @extends('adminlte::page')
 
-@section('title', 'Gerência TI')
 
 @section('content_header')
 <div class="box">

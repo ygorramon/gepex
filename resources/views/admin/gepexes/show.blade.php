@@ -1,6 +1,5 @@
 @extends('adminlte::page')
 
-@section('title', 'GEPEX')
 
 @section('content_header')
 <div class="card">

@@ -1,6 +1,5 @@
 @extends('adminlte::page')
 
-@section('title', 'COMPRAS TI')
 
 @section('content_header')
 <div class="card">

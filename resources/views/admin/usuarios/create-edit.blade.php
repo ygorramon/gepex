@@ -1,8 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Licita IF')
 
 @section('content_header')
+<div class="card">
+
+        <div class="card-body">
 <div class="box">
      <ol class="breadcrumb">
          <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
@@ -63,5 +65,6 @@
 </form>
 </div>
 </div>
-
+        </div>
+</div>
 @stop

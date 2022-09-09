@@ -28,6 +28,8 @@ Route::get('/gepex/{id}/secretaria','GepexController@secretaria')->middleware('a
 
 Route::get('/gepex/{id}/secretaria/create', 'GepexController@create')->middleware('auth')->name('gepex-secretaria-create');
 Route::post('/gepex/{id}/secretaria/create', 'GepexController@store')->middleware('auth')->name('gepex-secretaria-store');
+Route::post('/gepex/{id}/enviar-para-aprovacao', 'GepexController@enviar_para_aprovacao')->middleware('auth')->name('gepex-enviar-para-aprovacao');
+    
 Route::post('/gepex/{id}/enviar-aprovação','GepexController@enviar_aprovacao')->middleware('auth')->name('gepex-enviar-aprovacao');
 Route::get('/gepex-enviadas','GepexController@gepex_enviadas')->middleware('auth')->name('gepex-enviadas');
 Route::get('/analise-gepex/{id}','GepexController@analise_gepex')->middleware('auth')->name('gepex-analise');

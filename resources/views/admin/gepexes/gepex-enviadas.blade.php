@@ -1,6 +1,5 @@
 @extends('adminlte::page')
 
-@section('title', 'COMPRAS TI')
 
 @section('content_header')
     <div class="card">
@@ -49,7 +48,8 @@
                                         <td> {{ $gepex->uid }} </td>
                                         <td> {{ $gepex->needs }} </td>
                                         <td> {{ $gepex->secretary->name }} </td>
-                                        <td> {{ $gepex->status }} </td>
+                                        <td> <span
+                                                class="badge {{ setStatus($gepex->status)->color }}">{{ setStatus($gepex->status)->value }}</span> </td>
                                         <td> <span class="badge {{ setPriority($gepex->priority)->color }}">{{ setPriority($gepex->priority)->value }}</span> </td>
                                         <td>
                                             <a href="{{route('gepex-analise',$gepex->id)}}" class="btn btn-info">

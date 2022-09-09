@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+
 class GepexController extends Controller
 {
     /**
@@ -19,14 +20,15 @@ class GepexController extends Controller
     public function index()
     {
         $secretaries = Auth::user()->secretaries()->paginate();
-        return view ('admin.gepexes.index', compact('secretaries'));
+        return view('admin.gepexes.index', compact('secretaries'));
     }
 
-    public function secretaria($id){
+    public function secretaria($id)
+    {
         $secretary = Secretary::find($id);
         $gepexes =  $secretary->gepexes;
-      
-        return view ('admin.gepexes.gepex-secretaria', compact('secretary','gepexes'));
+
+        return view('admin.gepexes.gepex-secretaria', compact('secretary', 'gepexes'));
     }
 
     /**
@@ -39,7 +41,7 @@ class GepexController extends Controller
         $secretary = Secretary::find($id);
         $steps = Step::all();
 
-        return view('admin.gepexes.create-edit', compact('secretary','steps'));
+        return view('admin.gepexes.create-edit', compact('secretary', 'steps'));
     }
 
     /**
@@ -50,12 +52,12 @@ class GepexController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $secretary=Secretary::find($id);
+        $secretary = Secretary::find($id);
         $data = $request->all();
         /*
        * Regras
        */
-    //  dd($data);
+        //  dd($data);
         $this->rules = [
             'need' => 'required',
             'goals' => 'required',
@@ -81,27 +83,23 @@ class GepexController extends Controller
         $validate = validator($data, $this->rules, $messages);
         if ($validate->fails()) {
             return redirect()->route('gepex-secretaria-create')
-            ->withErrors($validate)
+                ->withErrors($validate)
                 ->withInput();
         }
 
-        $uid = IdGenerator::generate(['table' => 'gepexes','field'=>'uid', 'length' => 10, 'prefix' =>$secretary->initials.'-']);
+        $uid = IdGenerator::generate(['table' => 'gepexes', 'field' => 'uid', 'length' => 10, 'prefix' => $secretary->initials . '-']);
 
-
-        $secretary->gepexes()->
-        create([
-            'uid' =>   $uid,
-            'needs' => $data['need'],
-            'goals' => $data['goals'],
-            'strategies' => $data['strategies'],
-            'priority' =>  $data['priority'],
-            'completion_date' => $data['completion_date'],
-            'status' =>'INICIADO']);
+        $secretary->gepexes()->create([
+                'uid' =>   $uid,
+                'needs' => $data['need'],
+                'goals' => $data['goals'],
+                'strategies' => $data['strategies'],
+                'priority' =>  $data['priority'],
+                'completion_date' => $data['completion_date'],
+                'status' => 'LANÇADO'
+            ]);
 
         return redirect()->route('gepex-secretaria', $id);
-
-        
-       
     }
 
     /**
@@ -119,26 +117,28 @@ class GepexController extends Controller
     public function enviar_aprovacao($id)
     {
         $gepex = Gepex::find($id);
-        $gepex->update(['status'=>'ENVIADO PARA ANÁLISE']);
-     return redirect()->route('gepex-secretaria', $gepex->secretary->id);
+        $gepex->update(['status' => 'ENVIADO']);
+        return redirect()->route('gepex-secretaria', $gepex->secretary->id);
     }
 
 
     public function analisar_gepex($id, Request $request)
     {
         $gepex = Gepex::find($id);
-        if($request->status=='S'){
-            $request->status='APROVADO';
+        if ($request->status == 'S') {
+            $request->status = 'APROVADO';
         }
         if ($request->status == 'N') {
             $request->status = 'REPROVADO';
         }
-        $gepex->update(['status' =>            $request->status,
-    'priority' =>$request->priority]);
+        $gepex->update([
+            'status' =>            $request->status,
+            'priority' => $request->priority
+        ]);
         return redirect()->route('gepex-secretaria', $gepex->secretary->id);
     }
-    
- 
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -173,9 +173,10 @@ class GepexController extends Controller
         //
     }
 
-    public function gepex_enviadas(){
-        $gepexes = Gepex::where('status','ENVIADO PARA ANÁLISE')->get();
-        return view ('admin.gepexes.gepex-enviadas',compact('gepexes'));
+    public function gepex_enviadas()
+    {
+        $gepexes = Gepex::where('status', 'ENVIADO')->get();
+        return view('admin.gepexes.gepex-enviadas', compact('gepexes'));
     }
 
     public function analise_gepex($id)
@@ -188,16 +189,16 @@ class GepexController extends Controller
     {
         $gepex = Gepex::find($id);
         $steps_todos = Step::all();
-        $steps_selecionados=$gepex->steps;
-       // dd($steps_selecionados);
-        return view('admin.gepexes.definir-etapas', compact('gepex','steps_todos', 'steps_selecionados'));
+        $steps_selecionados = $gepex->steps;
+        // dd($steps_selecionados);
+        return view('admin.gepexes.definir-etapas', compact('gepex', 'steps_todos', 'steps_selecionados'));
     }
-    public function defenir_etapas_store($id, Request $request){
+    public function defenir_etapas_store($id, Request $request)
+    {
         $gepex = Gepex::find($id);
-        $gepex->update(['status'=>'Em Construção']);
         $gepex->steps()->sync($request->step_id);
-
-      return  redirect()->route('gepex.show', $gepex->id);
+        $secretary = $gepex->secretary;
+        return  redirect()->route('gepex-secretaria', $secretary->id);
     }
 
     public function ver_etapas($id)
@@ -206,16 +207,23 @@ class GepexController extends Controller
         $steps = $gepex->steps;
 
 
-        return view('admin.gepexes.ver-etapas', compact('gepex','steps'));
+        return view('admin.gepexes.ver-etapas', compact('gepex', 'steps'));
     }
-    public function concluir_etapa($id,$etapaid)
+    public function concluir_etapa($id, $etapaid)
     {
         $gepex = Gepex::find($id);
         $steps = $gepex->steps;
-        $gepex->steps()->updateExistingPivot($etapaid, ['finished'=>1,'completion_date'=>now()]);
+        $gepex->steps()->updateExistingPivot($etapaid, ['finished' => 1, 'completion_date' => now()]);
 
 
-        return view('admin.gepexes.ver-etapa', compact('gepex','steps'));
+        return view('admin.gepexes.ver-etapa', compact('gepex', 'steps'));
     }
 
+    public function enviar_para_aprovacao($id)
+    {
+        $gepex = Gepex::find($id);
+        $gepex->update(['status' => 'ENVIADO']);
+        $secretary = $gepex->secretary;
+        return  redirect()->route('gepex-secretaria', $secretary->id);
+    }
 }
