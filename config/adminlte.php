@@ -45,10 +45,10 @@ return [
     |
     */
 
-    'logo' => '<b>GEP</b>EX',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
-    'logo_img_xl' => null,
+    'logo' => '',
+    'logo_img' => 'vendor/adminlte/dist/img/logo.png',
+    'logo_img_class' => 'brand-image  elevation-3',
+    'logo_img_xl' => 'vendor/adminlte/dist/img/logo.png',
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'GEPEX',
 
@@ -101,14 +101,20 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
-
+/*
     'classes_auth_card' => 'card-outline card-primary',
     'classes_auth_header' => '',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
     'classes_auth_icon' => '',
     'classes_auth_btn' => 'btn-flat btn-primary',
-
+*/
+'classes_auth_card' => '',
+'classes_auth_header' => 'bg-gradient-info',
+'classes_auth_body' => '',
+'classes_auth_footer' => 'text-center',
+'classes_auth_icon' => 'fa-lg text-info',
+'classes_auth_btn' => 'btn-flat btn-primary',
     /*
     |--------------------------------------------------------------------------
     | Admin Panel Classes
@@ -127,9 +133,9 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-light-lime    elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_topnav' => 'navbar-teal navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
