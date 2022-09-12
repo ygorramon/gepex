@@ -21,6 +21,8 @@ class GepexStep extends Migration
                 $table->unsignedBigInteger('step_id');
                 $table->integer('finished')->default('0');;
                 $table->date('completion_date')->nullable();
+                $table->date('prevision_date')->nullable();
+                $table->text('obs')->nullable();
                 $table->foreign('gepex_id')
                 ->references('id')
                     ->on('gepexes')

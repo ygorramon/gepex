@@ -27,7 +27,11 @@
     <textarea class="form-control" disabled>{{$gepex->status}}</textarea>
       <label>Data de Conclusão</label>
     <input class="form-control" type="date" disabled value="{{ $gepex->completion_date}}">
+    <label>Observações</label>
+    <textarea class="form-control" disabled>{{$gepex->obs}}</textarea>
      </div>
+
+     
 </div>
 </div>
 

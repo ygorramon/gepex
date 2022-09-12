@@ -19,6 +19,7 @@ class CreateGepexesTable extends Migration
             $table->text('needs')->nullable();
             $table->text('strategies')->nullable();
             $table->text('goals')->nullable();
+            $table->text('obs')->nullable();
             $table->date('completion_date')->nullable();
             $table->unsignedBigInteger('secretary_id')->nullable();
             $table->integer('priority')->nullable();

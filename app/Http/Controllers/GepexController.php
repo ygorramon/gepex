@@ -121,19 +121,23 @@ class GepexController extends Controller
         return redirect()->route('gepex-secretaria', $gepex->secretary->id);
     }
 
+    public function iniciar_execucao($id)
+    {
+        $gepex = Gepex::find($id);
+        $gepex->update(['status' => 'EM EXECUÇÃO']);
+        return redirect()->route('gepex-secretaria', $gepex->secretary->id);
+    }
+
 
     public function analisar_gepex($id, Request $request)
     {
+     
         $gepex = Gepex::find($id);
-        if ($request->status == 'S') {
-            $request->status = 'APROVADO';
-        }
-        if ($request->status == 'N') {
-            $request->status = 'REPROVADO';
-        }
+       
         $gepex->update([
             'status' =>            $request->status,
-            'priority' => $request->priority
+            'priority' => $request->priority,
+            'obs' => $request->obs
         ]);
         return redirect()->route('gepex-secretaria', $gepex->secretary->id);
     }
@@ -196,7 +200,19 @@ class GepexController extends Controller
     public function defenir_etapas_store($id, Request $request)
     {
         $gepex = Gepex::find($id);
-        $gepex->steps()->sync($request->step_id);
+      //  dd($request->step_id);
+      if(isset($request->step_id)){
+      foreach ($request->step_id as $step_id) {
+
+        //collect all inserted record IDs
+       $photo_id_array[$step_id] = ['prevision_date' => $request->prevision_date[$step_id-1]];  
+   
+    }
+}
+else {
+    $photo_id_array=null;
+}
+        $gepex->steps()->sync($photo_id_array);
         $secretary = $gepex->secretary;
         return  redirect()->route('gepex-secretaria', $secretary->id);
     }
@@ -209,14 +225,18 @@ class GepexController extends Controller
 
         return view('admin.gepexes.ver-etapas', compact('gepex', 'steps'));
     }
-    public function concluir_etapa($id, $etapaid)
+
+    public function concluir_etapa($id, $etapaid, Request $request)
     {
+      
         $gepex = Gepex::find($id);
         $steps = $gepex->steps;
-        $gepex->steps()->updateExistingPivot($etapaid, ['finished' => 1, 'completion_date' => now()]);
+        $gepex->steps()->updateExistingPivot($etapaid, ['finished' => $request->finished, 
+        'completion_date' => $request->completion_date,
+    'obs'=>$request->obs]);
 
 
-        return view('admin.gepexes.ver-etapa', compact('gepex', 'steps'));
+        return redirect()->route('gepex-ver-etapas', $gepex->id);
     }
 
     public function enviar_para_aprovacao($id)

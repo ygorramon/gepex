@@ -31,6 +31,10 @@
                                             rowspan="1" colspan="1"
                                             aria-label="city: activate to sort column ascending">
                                             Etapa</th>
+                                            <th width="40%" class="sorting" tabindex="0" aria-controls="example2"
+                                            rowspan="1" colspan="1"
+                                            aria-label="city: activate to sort column ascending">
+                                            Previsão de Conclusão</th>
 
                                     </tr>
                                 </thead>
@@ -49,7 +53,7 @@
                                             </td>
                                             <td >
                                                 <spam class="example"  data-toggle="tooltip"  data-placement="right" title="{{$step->description}}" >{{ $step->name }}</spam></td>
-
+<td><input name="prevision_date[]" value="{{$step->prevision_date}}" type="date"></td>
                                         </tr>
                                     @empty
                                     @endforelse

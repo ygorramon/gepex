@@ -17,29 +17,20 @@ function setPriority($value){
 function setFinished($value)
 {
 
+    $data['value']="";
+    $data['color'] = "";
+
     if ($value == 0) {
-        $data['value'] = "LANÇADO";
-        $data['color'] = "bg-yellow";
-    }
-    if ($value == 1) {
-        $data['value'] = "APROVADO";
-        $data['color'] = "bg-blue";
-    }
-    if ($value == 3) {
-        $data['value'] = "DEVOLVIDO";
-        $data['color'] = "bg-orange";
-    }
-    if ($value == 4) {
-        $data['value'] = "EM EXECUÇÃO";
-        $data['color'] = "bg-yellow";
-    }
-    if ($value == 5) {
-        $data['value'] = "CANCELADO";
+        $data['value'] = "INCOMPLETA";
         $data['color'] = "bg-red";
     }
-    if ($value == 6) {
-        $data['value'] = "FINALIZADO";
+    if ($value == 1) {
+        $data['value'] = "COMPLETA";
         $data['color'] = "bg-green";
+    }
+    if ($value == 2) {
+        $data['value'] = "EM EXECUÇÃO";
+        $data['color'] = "bg-yellow";
     }
    
     return (object) $data;
@@ -81,6 +72,8 @@ function setStatus($value)
 
     return (object) $data;
 }
+
+
 
 function setDate($value){
     return Carbon\Carbon::parse($value)->format('d/m/Y');

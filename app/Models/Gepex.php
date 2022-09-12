@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Gepex extends Model
 {
     protected $fillable = [
-        'uid', 'needs', 'strategies', 'goals', 'completion_date', 'secretary_id', 'priority', 'status'
+        'uid', 'needs', 'strategies', 'goals', 'completion_date', 'secretary_id', 'priority', 'status','obs'
     ];
 
     public function secretary()
@@ -17,6 +17,6 @@ class Gepex extends Model
 
     public function steps()
     {
-        return $this->belongsToMany(\App\Models\Step::class, 'gepex_step')->withPivot('finished','id','completion_date');
+        return $this->belongsToMany(\App\Models\Step::class, 'gepex_step')->withPivot('finished','id','completion_date','obs','prevision_date');
     }
 }

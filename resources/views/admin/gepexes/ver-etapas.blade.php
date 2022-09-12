@@ -24,16 +24,13 @@
                         aria-describedby="example2_info">
                         <thead>
                             <tr role="row">
-                                <th width="50%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                    colspan="1" aria-label="city: activate to sort column ascending">Etapa</th>
+                                <th >Etapa</th>
                                     
-                                <th tabindex="0" aria-controls="example2" rowspan="1" 
-                                    aria-label="Action: activate to sort column ascending">Situação</th>
-                                <th tabindex="0" aria-controls="example2" rowspan="1" 
-                                    aria-label="Action: activate to sort column ascending">Data de Conclusão</th>
+                                <th >Situação</th>
+                                <th >Data de Conclusão</th>
+                                <th >Observações</th>
 
-                                <th tabindex="0" aria-controls="example2" rowspan="1" 
-                                    aria-label="Action: activate to sort column ascending">Ação</th>
+                                <th >Ação</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,10 +39,50 @@
 
                                     <td> {{ $step->name }} </td>
                                   <td> <span class="badge {{ setfinished($step->pivot->finished)->color }}">{{ setfinished($step->pivot->finished)->value }} </span></td>
-                                  <td> {{ setDate($step->pivot->completion_date) }} </td>
+                                  <td> @if(isset($step->pivot->completion_date)){{ setDate($step->pivot->completion_date) }} @endif </td>
+                                  <td> {{$step->pivot->obs}} </td>
 
                                     <td>
-                                       <a class="btn btn-primary" href="{{route('concluir-etapa', [$gepex->id, $step->id])}}"> Concluir Etapa</a> 
+                                      
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal{{$step->id}}">
+                           SITUAÇÃO DA ETAPA
+                        </button>
+                        
+                        <div class="modal fade" id="modal{{$step->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <form action="{{route('concluir-etapa',[$gepex->id, $step->id])}}" method="post">
+                                    {!! csrf_field() !!}
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">SITUAÇÃO DA ETAPA </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <label>Concluído:</label>
+                                            <select name="finished" class="form-control" required>
+                                                <option value="">Selecione</option>
+
+                                                <option  value=" 1" >SIM</option>
+                                                <option  value="2">EM PARTES</option>
+
+
+                                            </select><label> Data de Atualização</label>
+                                            <input class="form-control" name="completion_date" type="date" required>
+                                            <label>Observações</label>
+                                            <textarea name="obs" class="form-control"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button  class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                            <button type="submit" class="btn btn-primary">ENVIAR</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
 
                                     </td>
                                 </tr>
