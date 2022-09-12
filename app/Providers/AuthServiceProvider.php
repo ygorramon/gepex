@@ -28,8 +28,26 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('admin', function (User $user) {
             $permissao = false;
-            foreach ($user->secretaries as $setor) {
-                if ($setor->initials == "ADMSISTEM") {
+            foreach ($user->perfils as $perfil) {
+                if ($perfil->name == "ADMIN") {
+                    $permissao = true;
+                }
+            }
+            return ($permissao);
+        });
+        Gate::define('prefeito', function (User $user) {
+            $permissao = false;
+            foreach ($user->perfils as $perfil) {
+                if ($perfil->name == "ADMIN" || $perfil->name == "PREFEITO") {
+                    $permissao = true;
+                }
+            }
+            return ($permissao);
+        });
+        Gate::define('secretaria', function (User $user) {
+            $permissao = false;
+            foreach ($user->perfils as $perfil) {
+                if ($perfil->name == "ADMIN" || $perfil->name == "SECRETARIA") {
                     $permissao = true;
                 }
             }

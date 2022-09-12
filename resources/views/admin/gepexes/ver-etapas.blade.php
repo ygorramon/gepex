@@ -27,6 +27,7 @@
                                 <th >Etapa</th>
                                     
                                 <th >Situação</th>
+                                <th >Previsão de Completar</th>
                                 <th >Data de Conclusão</th>
                                 <th >Observações</th>
 
@@ -39,6 +40,7 @@
 
                                     <td> {{ $step->name }} </td>
                                   <td> <span class="badge {{ setfinished($step->pivot->finished)->color }}">{{ setfinished($step->pivot->finished)->value }} </span></td>
+                                  <td> @if(isset($step->pivot->prevision_date)){{ setDate($step->pivot->prevision_date) }} @endif </td>
                                   <td> @if(isset($step->pivot->completion_date)){{ setDate($step->pivot->completion_date) }} @endif </td>
                                   <td> {{$step->pivot->obs}} </td>
 
@@ -92,7 +94,12 @@
                         </tbody>
 
                     </table>
-
+@if(percent($gepex)==100 && $gepex->status=='EM EXECUÇÃO')
+ <form action="{{route('gepex-finalizar-execucao',$gepex->id)}}" method="post">
+                                    {!! csrf_field() !!}
+<button class="btn btn-success">FINALIZAR GEPEX</button>
+ </form>
+@endif
                 </div>
             </div>
         </div>

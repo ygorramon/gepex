@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Gepex;
+
 function setPriority($value){
   
     if ($value==1){
@@ -78,4 +80,10 @@ function setStatus($value)
 function setDate($value){
     return Carbon\Carbon::parse($value)->format('d/m/Y');
     
+}
+
+function percent(Gepex $gepex){
+    $value=0;
+    $value= (count($gepex->steps->where('pivot.finished', '=', 1)) / count($gepex->steps))*100;
+return $value;
 }

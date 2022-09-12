@@ -83,6 +83,7 @@ class UserController extends Controller
         User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'cpf' => $data['cpf'],
             'password' => bcrypt($data['password']),
 
         ]);
@@ -168,7 +169,9 @@ class UserController extends Controller
         $user = User::find($id);
         $update = $user->update([
             'name' => $dataForm['name'],
-            'email' => $dataForm['email']
+            'email' => $dataForm['email'],
+            'cpf' => $dataForm['cpf'],
+            'password' => bcrypt($dataForm['password']),
         ]);
         if ($update)
             return redirect()->route('usuario.index');

@@ -26,6 +26,9 @@
     <div class="form-group col-md-3">
       <label >Email:</label>   <input type="text"  disabled="true" name="email" class="form-control" value="{{$user->email }}">
     </div>
+    <div class="form-group col-md-3">
+      <label >CPF:</label>   <input type="text"  disabled="true" name="cpf" class="form-control" value="{{$user->cpf }}">
+    </div>
     </div>
         <div class="row">
             <div class="col-sm-12">

@@ -15,32 +15,42 @@ Route::get('/', function () {
   return redirect()->route('login');
 });
 
-Route::prefix('admin')->middleware('can:admin')->group(
-    function () {
-Route::resource('/usuario', 'UserController')->middleware('auth');
-Route::resource('/etapa', 'StepController')->middleware('auth');
-Route::resource('/secretaria', 'SecretaryController')->middleware('auth');
-Route::resource('/gepex', 'GepexController')->middleware('auth');
-Route::get('/secretaria/{id}/servidores', 'SecretaryController@servidores')->middleware('auth');
-Route::get('/secretaria/{id}/editar-servidores', 'SecretaryController@adicionarServidores')->middleware('auth');
-Route::post('secretaria/{id}/editar-servidores', 'SecretaryController@storeServidores')->middleware('auth');
-Route::get('/gepex/{id}/secretaria','GepexController@secretaria')->middleware('auth')->name('gepex-secretaria');
+Route::prefix('admin')->middleware('can:prefeito')->group(
+  function () {
+    Route::resource('/usuario', 'UserController')->middleware('auth');
+    Route::resource('/etapa', 'StepController')->middleware('auth');
+    Route::resource('/secretaria', 'SecretaryController')->middleware('auth');
+    Route::resource('/perfil', 'PerfilController')->middleware('auth');
+    Route::get('/secretaria/{id}/servidores', 'SecretaryController@servidores')->middleware('auth');
+    Route::get('/secretaria/{id}/editar-servidores', 'SecretaryController@adicionarServidores')->middleware('auth');
+    Route::post('secretaria/{id}/editar-servidores', 'SecretaryController@storeServidores')->middleware('auth');
+    Route::get('/perfil/{id}/servidores', 'PerfilController@servidores')->middleware('auth');
+    Route::get('/perfil/{id}/editar-servidores', 'PerfilController@adicionarServidores')->middleware('auth');
+    Route::post('perfil/{id}/editar-servidores', 'PerfilController@storeServidores')->middleware('auth');
+    Route::post('/gepex/{id}/enviar-aprovacao', 'GepexController@enviar_aprovacao')->middleware('auth')->name('gepex-enviar-aprovacao');
+    Route::get('/gepex-enviadas', 'GepexController@gepex_enviadas')->middleware('auth')->name('gepex-enviadas');
+    Route::get('/analise-gepex/{id}', 'GepexController@analise_gepex')->middleware('auth')->name('gepex-analise');
+    Route::post('/analise-gepex/{id}', 'GepexController@analisar_gepex')->middleware('auth')->name('gepex-analise-post');
+  }
+);
+Route::prefix('admin')->middleware('can:secretaria')->group(
+  function () {
+    Route::resource('/gepex', 'GepexController')->middleware('auth');
+    Route::any('/gepex/search', 'GepexController@search')->middleware('auth')->name('gepex.search');
 
-Route::get('/gepex/{id}/secretaria/create', 'GepexController@create')->middleware('auth')->name('gepex-secretaria-create');
-Route::post('/gepex/{id}/secretaria/create', 'GepexController@store')->middleware('auth')->name('gepex-secretaria-store');
-Route::post('/gepex/{id}/enviar-para-aprovacao', 'GepexController@enviar_para_aprovacao')->middleware('auth')->name('gepex-enviar-para-aprovacao');
-    
-Route::post('/gepex/{id}/enviar-aprovacao','GepexController@enviar_aprovacao')->middleware('auth')->name('gepex-enviar-aprovacao');
-Route::post('/gepex/{id}/iniciar_execucao','GepexController@iniciar_execucao')->middleware('auth')->name('gepex-iniciar-execucao');
-Route::get('/gepex-enviadas','GepexController@gepex_enviadas')->middleware('auth')->name('gepex-enviadas');
-Route::get('/analise-gepex/{id}','GepexController@analise_gepex')->middleware('auth')->name('gepex-analise');
-Route::post('/analise-gepex/{id}', 'GepexController@analisar_gepex')->middleware('auth')->name('gepex-analise-post');
-Route::get('/gepex/{id}/definir_etapas', 'GepexController@defenir_etapas')->middleware('auth')->name('gepex-defenir-etapas');
-Route::post('/gepex/{id}/definir_etapas', 'GepexController@defenir_etapas_store')->middleware('auth')->name('gepex-defenir-etapas-post');
-Route::get('/gepex/{id}/ver_etapas', 'GepexController@ver_etapas')->middleware('auth')->name('gepex-ver-etapas');
-Route::post('/gepex/{id}/etapa/{etapaid}/concluir', 'GepexController@concluir_etapa')->middleware('auth')->name('concluir-etapa');
-});
+    Route::get('/gepex/{id}/secretaria', 'GepexController@secretaria')->middleware('auth')->name('gepex-secretaria');
 
+    Route::get('/gepex/{id}/secretaria/create', 'GepexController@create')->middleware('auth')->name('gepex-secretaria-create');
+    Route::post('/gepex/{id}/secretaria/create', 'GepexController@store')->middleware('auth')->name('gepex-secretaria-store');
+    Route::post('/gepex/{id}/enviar-para-aprovacao', 'GepexController@enviar_para_aprovacao')->middleware('auth')->name('gepex-enviar-para-aprovacao');
+    Route::post('/gepex/{id}/iniciar_execucao', 'GepexController@iniciar_execucao')->middleware('auth')->name('gepex-iniciar-execucao');
+    Route::post('/gepex/{id}/finalizar_execucao', 'GepexController@finalizar_execucao')->middleware('auth')->name('gepex-finalizar-execucao');
+    Route::get('/gepex/{id}/definir_etapas', 'GepexController@defenir_etapas')->middleware('auth')->name('gepex-defenir-etapas');
+    Route::post('/gepex/{id}/definir_etapas', 'GepexController@defenir_etapas_store')->middleware('auth')->name('gepex-defenir-etapas-post');
+    Route::get('/gepex/{id}/ver_etapas', 'GepexController@ver_etapas')->middleware('auth')->name('gepex-ver-etapas');
+    Route::post('/gepex/{id}/etapa/{etapaid}/concluir', 'GepexController@concluir_etapa')->middleware('auth')->name('concluir-etapa');
+  }
+);
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

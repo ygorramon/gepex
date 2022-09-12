@@ -127,6 +127,12 @@ class GepexController extends Controller
         $gepex->update(['status' => 'EM EXECUÇÃO']);
         return redirect()->route('gepex-secretaria', $gepex->secretary->id);
     }
+    public function finalizar_execucao($id)
+    {
+        $gepex = Gepex::find($id);
+        $gepex->update(['status' => 'FINALIZADO']);
+        return redirect()->route('gepex-secretaria', $gepex->secretary->id);
+    }
 
 
     public function analisar_gepex($id, Request $request)
@@ -246,4 +252,25 @@ else {
         $secretary = $gepex->secretary;
         return  redirect()->route('gepex-secretaria', $secretary->id);
     }
+
+    public function search(Request $request)
+    {
+        $filters = $request->only('filter');
+
+        $gepexes = Gepex
+            ::where(function ($query) use ($request) {
+                if ($request->filter) {
+                    $query->orWhere('uid', 'LIKE', "%{$request->filter}%");
+                  
+                }
+            })
+            ->latest()
+            ->paginate();
+$secretary=Secretary::find(2);
+      
+
+        return view('admin.gepexes.gepex-secretaria', compact('secretary', 'gepexes'));
+
+    }
+
 }

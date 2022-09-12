@@ -42,15 +42,16 @@
     <div class="form-group col-md-3">
         <label >Email:</label>   <input  type="email" autocomplete="off" name="email" required class="form-control" value="{{$user->email ?? ''}}">
     </div>
+     <div class="form-group col-md-3">
+      <label >CPF:</label>   <input type="text"   name="cpf" class="form-control" value="{{$user->cpf ?? '' }}">
+    </div>
      </div>
-    @if(isset($user))
-    @else
+   
      <div class="row">
     <div class="form-group col-md-3">
-        <label >Senha:</label>   <input autocomplete="off" type="password" name="password" required maxlength="14" class="form-control" value="{{$user->password ?? '' }}">
+        <label >Senha:</label>   <input autocomplete="off" type="password" name="password" required maxlength="14" class="form-control">
     </div>
     </div>
-    @endif
     
     <div class="row">
    <div class="form-group  col-md-3">

@@ -246,6 +246,12 @@ return [
             'can' => 'admin'
         ],
         [
+            'text' => 'Perfil',
+            'url'  => 'admin/perfil',
+            'icon' => 'fas fa-fw fa-user',
+            'can' => 'admin'
+        ],
+        [
             'text' => 'Secretarias',
             'url'  => 'admin/secretaria',
             'icon' => 'fas fa-duotone fa-city',
@@ -262,12 +268,14 @@ return [
             'text' => 'Minhas GEPEXs',
             'url'  => 'admin/gepex',
             'icon' => 'fas fa-duotone fa-map-pin',
+            'can' => 'secretaria'
             
         ],
         [
             'text' => 'GEPEXs Enviadas',
             'url'  => 'admin/gepex-enviadas',
             'icon' => 'fas fa-duotone fa-map-pin',
+            'can' => 'prefeito'
             
         ],
     ],

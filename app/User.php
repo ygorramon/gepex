@@ -41,4 +41,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(\App\Models\Secretary::class, 'secretary_user');
     }
+    public function perfils()
+    {
+        return $this->belongsToMany(\App\Models\Perfil::class, 'perfil_user');
+    }
 }

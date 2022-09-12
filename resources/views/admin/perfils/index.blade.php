@@ -1,76 +1,80 @@
 @extends('adminlte::page')
 
+@section('title', 'GEPEX')
 
 @section('content_header')
-<div class="card">
+ <div class="card">
 
         <div class="card-body">
 <div class="box">
     <ol class="breadcrumb">
-  <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-  <li class="breadcrumb-item active">Usuários</li>
+<li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+<li class="breadcrumb-item active">perfils</li>
  
 </ol>
     <div class="box-header">
         <div class="row">
-            
-            <div class="col-sm-3" >
-                <a  href="{{route('usuario.create')}}" class="btn btn-primary"> <i class="fa fa-user-plus"></i>&ensp;Adicionar Usuário </a>
+            <div class="col-sm-9">
+                <a  href="{{url('admin/perfil/create')}}" class="btn btn-primary"> <i class="fa fa-user-plus"></i>&ensp;Adicionar perfil </a>
             </div>
+            
         </div>
     </div>
-    <div class="content">
-    <div class="row">
+
+    <div class="row content">
         <div class="col-sm-12">
             <table id="example" class="table table-condensed">
                 <thead>
                     <tr role="row">
-                        <th width="10%" >ID</th>
-                        <th width="70%">Nome</th>
+                        <th>id</th>
+                        <th>Perfil</th>
                       
                         <th >Ação</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($users as $user)
-                    @if(isset($user->aluno->nome))
-                    @else
-                    <tr role="row" class="odd">
-                        <td>{{$user->id}} </td>
-                        <td>{{$user->name}} </td>
-                       
-                        
+                    @forelse($perfis as $perfil)
+                      
+                    <tr><td>{{$perfil->id}}</td>
+                        <td>{{$perfil->name}}</td>
+                                                
+
                         <td>
-                            <a  href="{{route('usuario.show',$user->id)}}"
-                                class="btn btn-sm btn-success " >
-                                <span class="glyphicon glyphicon-eye-open"></span> Visualizar</a>
-                            </a>
-                            <a  href="{{route('usuario.edit',$user->id)}}"
-                                class="btn btn-sm btn-warning">
+                            <form class="form" method="post" action="{{route('perfil.destroy',$perfil->id)}}" onsubmit = "return confirm('Confirmar apagar?')">
+    {{ method_field('DELETE')}}
+    {!! csrf_field() !!} 
+                            <a  href="{{route('perfil.edit',$perfil->id)}}"
+                                class="btn  btn-warning">
                                 <span class="glyphicon glyphicon-pencil"></span>Editar
 
                             </a>
-                        </td>
+                          
+                            <button class="btn btn-danger" > <span class="glyphicon glyphicon-trash"></span>&ensp;Deletar</button>
+                            <a href="{{url("admin/perfil/$perfil->id/servidores")}}"class="btn btn-primary">     <span class="glyphicon glyphicon-user"></span>Servidores</a></td>
+     
+</form>
+    
+                          
+                            
                     </tr>
-                    @endif
-                    @empty
-                    <tr><td colspan="3">Nenhum Usuário encontrado</td></tr>
+                    @empty<tr><td>Nenhuma perfil cadastrada</td></tr>
                     @endforelse
                 </tbody>
 
             </table>
         </div>
     </div>
-    </div>
     <div class="row">
         
         <div class="col-sm-8">
         </div>
-       
+        <div class="col-sm-4">
+          
+        </div>
       </div>
 </div>
         </div>
-</div>
+ </div>
 @section('js')
 <script type="text/javascript">
     $('#example').DataTable( {
