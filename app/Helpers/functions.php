@@ -87,3 +87,7 @@ function percent(Gepex $gepex){
     $value= (count($gepex->steps->where('pivot.finished', '=', 1)) / count($gepex->steps))*100;
 return $value;
 }
+
+function diffDays(){
+
+}

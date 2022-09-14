@@ -90,14 +90,14 @@ class GepexController extends Controller
         $uid = IdGenerator::generate(['table' => 'gepexes', 'field' => 'uid', 'length' => 10, 'prefix' => $secretary->initials . '-']);
 
         $secretary->gepexes()->create([
-                'uid' =>   $uid,
-                'needs' => $data['need'],
-                'goals' => $data['goals'],
-                'strategies' => $data['strategies'],
-                'priority' =>  $data['priority'],
-                'completion_date' => $data['completion_date'],
-                'status' => 'LANÇADO'
-            ]);
+            'uid' =>   $uid,
+            'needs' => $data['need'],
+            'goals' => $data['goals'],
+            'strategies' => $data['strategies'],
+            'priority' =>  $data['priority'],
+            'completion_date' => $data['completion_date'],
+            'status' => 'LANÇADO'
+        ]);
 
         return redirect()->route('gepex-secretaria', $id);
     }
@@ -137,9 +137,9 @@ class GepexController extends Controller
 
     public function analisar_gepex($id, Request $request)
     {
-     
+
         $gepex = Gepex::find($id);
-       
+
         $gepex->update([
             'status' =>            $request->status,
             'priority' => $request->priority,
@@ -206,18 +206,16 @@ class GepexController extends Controller
     public function defenir_etapas_store($id, Request $request)
     {
         $gepex = Gepex::find($id);
-      //  dd($request->step_id);
-      if(isset($request->step_id)){
-      foreach ($request->step_id as $step_id) {
+        //  dd($request->step_id);
+        if (isset($request->step_id)) {
+            foreach ($request->step_id as $step_id) {
 
-        //collect all inserted record IDs
-       $photo_id_array[$step_id] = ['prevision_date' => $request->prevision_date[$step_id-1]];  
-   
-    }
-}
-else {
-    $photo_id_array=null;
-}
+                //collect all inserted record IDs
+                $photo_id_array[$step_id] = ['prevision_date' => $request->prevision_date[$step_id - 1]];
+            }
+        } else {
+            $photo_id_array = null;
+        }
         $gepex->steps()->sync($photo_id_array);
         $secretary = $gepex->secretary;
         return  redirect()->route('gepex-secretaria', $secretary->id);
@@ -234,12 +232,14 @@ else {
 
     public function concluir_etapa($id, $etapaid, Request $request)
     {
-      
+
         $gepex = Gepex::find($id);
         $steps = $gepex->steps;
-        $gepex->steps()->updateExistingPivot($etapaid, ['finished' => $request->finished, 
-        'completion_date' => $request->completion_date,
-    'obs'=>$request->obs]);
+        $gepex->steps()->updateExistingPivot($etapaid, [
+            'finished' => $request->finished,
+            'completion_date' => $request->completion_date,
+            'obs' => $request->obs
+        ]);
 
 
         return redirect()->route('gepex-ver-etapas', $gepex->id);
@@ -255,22 +255,34 @@ else {
 
     public function search(Request $request)
     {
-        $filters = $request->only('filter');
 
         $gepexes = Gepex
             ::where(function ($query) use ($request) {
-                if ($request->filter) {
-                    $query->orWhere('uid', 'LIKE', "%{$request->filter}%");
-                  
+                if ($request->uid) {
+                    $query->orWhere('uid', 'LIKE', "%{$request->uid}%");
                 }
             })
+            ->where(function ($query) use ($request) {
+                if ($request->status) {
+                    $query->orWhere('status', $request->status);
+                }
+            })
+            ->where(function ($query) use ($request) {
+                if ($request->priority) {
+                    $query->orWhere('priority', $request->priority);
+                }
+            })
+            ->where(function ($query) use ($request) {
+                if ($request->tempo) {
+                $query->where('created_at', '>', now()->subDays($request->tempo));
+                }
+            })
+            
             ->latest()
-            ->paginate();
-$secretary=Secretary::find(2);
-      
+            ->get();
+        $secretary = Secretary::find($request->secretary_id);
 
-        return view('admin.gepexes.gepex-secretaria', compact('secretary', 'gepexes'));
 
+        return view('admin.gepexes.gepex-secretaria', compact('secretary', 'gepexes','request'));
     }
-
 }
