@@ -29,6 +29,7 @@ Route::prefix('admin')->middleware('can:prefeito')->group(
     Route::post('perfil/{id}/editar-servidores', 'PerfilController@storeServidores')->middleware('auth');
     Route::post('/gepex/{id}/enviar-aprovacao', 'GepexController@enviar_aprovacao')->middleware('auth')->name('gepex-enviar-aprovacao');
     Route::get('/gepex-enviadas', 'GepexController@gepex_enviadas')->middleware('auth')->name('gepex-enviadas');
+    Route::get('/gepex-todas', 'GepexController@gepex_todas')->middleware('auth')->name('gepex-todas');
     Route::get('/analise-gepex/{id}', 'GepexController@analise_gepex')->middleware('auth')->name('gepex-analise');
     Route::post('/analise-gepex/{id}', 'GepexController@analisar_gepex')->middleware('auth')->name('gepex-analise-post');
   }
@@ -38,6 +39,7 @@ Route::prefix('admin')->middleware('can:secretaria')->group(
     Route::get('/relatorios','ReportController@index')->middleware('auth')->name('relatorios.index');
     Route::resource('/gepex', 'GepexController')->middleware('auth');
     Route::any('/gepex/search', 'GepexController@search')->middleware('auth')->name('gepex.search');
+    Route::any('/gepex/search_todas', 'GepexController@search_todas')->middleware('auth')->name('gepex.search_todas');
 
     Route::get('/gepex/{id}/secretaria', 'GepexController@secretaria')->middleware('auth')->name('gepex-secretaria');
 

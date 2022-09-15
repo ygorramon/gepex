@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Database\Eloquent\Collection;
 
 class GepexController extends Controller
 {
@@ -19,6 +20,13 @@ class GepexController extends Controller
      */
     public function index()
     {
+      
+       $steps = Step::withCount('gepex')->get();
+      dd( count ($steps));
+
+
+
+       
         $secretaries = Auth::user()->secretaries()->paginate();
         return view('admin.gepexes.index', compact('secretaries'));
     }
@@ -145,8 +153,7 @@ class GepexController extends Controller
             'priority' => $request->priority,
             'obs' => $request->obs
         ]);
-        return redirect()->route('gepex-secretaria', $gepex->secretary->id);
-    }
+  return  redirect()->route('gepex-enviadas');    }
 
 
     /**
@@ -185,8 +192,14 @@ class GepexController extends Controller
 
     public function gepex_enviadas()
     {
-        $gepexes = Gepex::where('status', 'ENVIADO')->get();
+        $gepexes = Gepex::whereIn('status', ['ENVIADO','APROVADO'])->get();
         return view('admin.gepexes.gepex-enviadas', compact('gepexes'));
+    }
+    public function gepex_todas()
+    {
+        $gepexes = Gepex::all();
+        $secretaries = Secretary::all();
+        return view('admin.gepexes.gepex-todas', compact('gepexes','secretaries'));
     }
 
     public function analise_gepex($id)
@@ -200,7 +213,9 @@ class GepexController extends Controller
         $gepex = Gepex::find($id);
         $steps_todos = Step::all();
         $steps_selecionados = $gepex->steps;
-        // dd($steps_selecionados);
+
+       
+        
         return view('admin.gepexes.definir-etapas', compact('gepex', 'steps_todos', 'steps_selecionados'));
     }
     public function defenir_etapas_store($id, Request $request)
@@ -217,8 +232,8 @@ class GepexController extends Controller
             $photo_id_array = null;
         }
         $gepex->steps()->sync($photo_id_array);
-        $secretary = $gepex->secretary;
-        return  redirect()->route('gepex-secretaria', $secretary->id);
+        
+        return  redirect()->route('gepex-enviadas');
     }
 
     public function ver_etapas($id)
@@ -276,7 +291,7 @@ class GepexController extends Controller
                 if ($request->tempo) {
                 $query->where('created_at', '>', now()->subDays($request->tempo));
                 }
-            })
+            })->where('secretary_id',$request->secretary_id)
             
             ->latest()
             ->get();
@@ -284,5 +299,42 @@ class GepexController extends Controller
 
 
         return view('admin.gepexes.gepex-secretaria', compact('secretary', 'gepexes','request'));
+    }
+    public function search_todas(Request $request)
+    {
+
+        $gepexes = Gepex
+            ::where(function ($query) use ($request) {
+                if ($request->uid) {
+                    $query->Where('uid', 'LIKE', "%{$request->uid}%");
+                }
+            })
+            ->where(function ($query) use ($request) {
+                if ($request->status) {
+                    $query->Where('status', $request->status);
+                }
+            })
+            ->where(function ($query) use ($request) {
+                if ($request->priority) {
+                    $query->Where('priority', $request->priority);
+                }
+            })
+            ->where(function ($query) use ($request) {
+                if ($request->tempo) {
+                $query->where('created_at', '>', now()->subDays($request->tempo));
+                }
+            })
+            ->where(function ($query) use ($request) {
+                if ($request->secretary_id) {
+                $query->where('secretary_id', $request->secretary_id);
+                }
+            })
+            
+            ->latest()
+            ->get();
+        $secretaries = Secretary::all();
+
+
+        return view('admin.gepexes.gepex-todas', compact('secretaries', 'gepexes','request'));
     }
 }

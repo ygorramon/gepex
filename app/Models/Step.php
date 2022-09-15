@@ -9,4 +9,9 @@ class Step extends Model
     protected $fillable = [
         'name', 'description'
     ];
+
+    public function gepex(){
+        return $this->belongsToMany(\App\Models\Gepex::class, 'gepex_step');
+    }
+  
 }

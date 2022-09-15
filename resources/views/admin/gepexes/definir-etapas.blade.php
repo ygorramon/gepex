@@ -55,8 +55,27 @@
                                                 <spam class="example" data-toggle="tooltip" data-placement="right"
                                                     title="{{ $step->description }}">{{ $step->name }}</spam>
                                             </td>
-                                            <td><input name="prevision_date[]" value="{{ $step->prevision_date }}"
-                                                    type="date" class="form-control"></td>
+                                            <td>
+                                               
+                      
+                                                    <input name="prevision_date[]" @forelse ($steps_selecionados as $step_selecionado)
+                                              
+                                                @if ($step->id == $step_selecionado->id)
+                                                    
+                                                    value="{{ $step_selecionado->pivot->prevision_date ?? '' }}"
+                                                     @endif
+
+                                                       @empty
+                       
+                                 @endforelse   
+                                                    type="date" class="form-control">
+                       
+                      
+                                                
+                            
+                                             
+                                                
+                                                </td>
                                         </tr>
                                     @empty
                                     @endforelse

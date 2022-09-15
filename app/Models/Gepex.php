@@ -19,4 +19,9 @@ class Gepex extends Model
     {
         return $this->belongsToMany(\App\Models\Step::class, 'gepex_step')->withPivot('finished','id','completion_date','obs','prevision_date');
     }
+
+    public function steps_todas()
+    {
+        return $this->hasManyThrough("App\Models\Gepex", "App\Models\Step");
+    }
 }

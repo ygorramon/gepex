@@ -81,6 +81,33 @@ function setDate($value){
     return Carbon\Carbon::parse($value)->format('d/m/Y');
     
 }
+function setDateConclusion($value){
+
+    $data['value'] = "";
+    $data['days'] = "";
+    $data['color'] = "";
+
+   
+
+    $days=     \Carbon\Carbon::parse(now())
+        ->diffInDays(\Carbon\Carbon::parse($value), false);
+
+         if($days <= 0 ){
+        $data['color'] = 'bg-red';
+         }
+         if($days  > 0  &&  $days  <=20){
+        $data['color'] = 'bg-yellow';
+         }
+         if($days > 20 ){
+        $data['color'] = 'bg-green';
+         }
+
+    $data['value'] = Carbon\Carbon::parse($value)->format('d/m/Y'); 
+   
+ 
+    return (object) $data ;
+    
+}
 
 function percent(Gepex $gepex){
     $value=0;

@@ -126,10 +126,7 @@
                                             class="badge {{ setPriority($gepex->priority)->color }}">{{ setPriority($gepex->priority)->value }}</span>
                                     </td>
                                     <td>
-                                        @if ($gepex->status == 'LANÇADO' || $gepex->status == 'DEVOLVIDO')
-                                            <a href="{{ route('gepex-defenir-etapas', $gepex->id) }}" class="btn btn-info">
-                                                <span class="glyphicon glyphicon-hand-up"></span> Definir Etapas</a>
-                                        @endif
+                                      
 
 
                                         <a href="{{ route('gepex.show', $gepex->id) }}" class="btn btn-info">
@@ -141,7 +138,7 @@
 
 
 
-                                    @if (($gepex->status == 'LANÇADO' || $gepex->status == 'DEVOLVIDO') && count($gepex->steps) > 0)
+                                    @if (($gepex->status == 'LANÇADO' || $gepex->status == 'DEVOLVIDO'))
                                         <td>
                                             <form action="{{ route('gepex-enviar-para-aprovacao', $gepex->id) }}"
                                                 method="post">
@@ -152,7 +149,7 @@
 
                                         </td>
                                     @endif
-                                    @if ($gepex->status == 'APROVADO')
+                                    @if ($gepex->status == 'APROVADO' && count($gepex->steps)>0)
                                         <td>
                                             <form action="{{ route('gepex-iniciar-execucao', $gepex->id) }}"
                                                 method="post">

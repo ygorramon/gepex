@@ -49,12 +49,24 @@
                                         <td> {{ $gepex->needs }} </td>
                                         <td> {{ $gepex->secretary->name }} </td>
                                         <td> <span
-                                                class="badge {{ setStatus($gepex->status)->color }}">{{ setStatus($gepex->status)->value }}</span> </td>
-                                        <td> <span class="badge {{ setPriority($gepex->priority)->color }}">{{ setPriority($gepex->priority)->value }}</span> </td>
+                                                class="badge {{ setStatus($gepex->status)->color }}">{{ setStatus($gepex->status)->value }}</span>
+                                            @if($gepex->status=='APROVADO')
+                                        <b>Quantidade de Etapas:</b> {{count($gepex->steps)}}
+                                        @endif
+                                        </td> </td>
+                                        <td> <span class="badge {{ setPriority($gepex->priority)->color }}">{{ setPriority($gepex->priority)->value }}</span> 
+                                        
                                         <td>
+                                            @if($gepex->status=='ENVIADO')
                                             <a href="{{route('gepex-analise',$gepex->id)}}" class="btn btn-info">
                                                 <span class="glyphicon glyphicon-hand-up"></span> Analisar</a>
+                                                @endif
+                                            @if($gepex->status=='APROVADO')
+                                               
+                                            <a href="{{route('gepex-defenir-etapas',$gepex->id)}}" class="btn btn-info">
+                                                <span class="glyphicon glyphicon-hand-up"></span> Definir Etapas</a>
 
+                                                @endif
 
                                         </td>
                                        
