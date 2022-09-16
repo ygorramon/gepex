@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gepex;
+use App\Models\Gepex_Step;
 use App\Models\Secretary;
 use App\Models\Step;
 use Illuminate\Http\Request;
@@ -21,11 +22,7 @@ class GepexController extends Controller
     public function index()
     {
       
-       $steps = Step::withCount('gepex')->get();
-      dd( count ($steps));
-
-
-
+    
        
         $secretaries = Auth::user()->secretaries()->paginate();
         return view('admin.gepexes.index', compact('secretaries'));
