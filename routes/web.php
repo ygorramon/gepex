@@ -37,8 +37,10 @@ Route::prefix('admin')->middleware('can:prefeito')->group(
 Route::prefix('admin')->middleware('can:secretaria')->group(
   function () {
     Route::get('/relatorios','ReportController@index')->middleware('auth')->name('relatorios.index');
+    Route::get('/relatorios/etapas','ReportController@etapas')->middleware('auth')->name('relatorios.etapas');
     Route::resource('/gepex', 'GepexController')->middleware('auth');
     Route::any('/gepex/search', 'GepexController@search')->middleware('auth')->name('gepex.search');
+    Route::any('/relatorios/etapas/search', 'ReportController@search_todas')->middleware('auth')->name('relatorios.search_etapas_todas');
     Route::any('/gepex/search_todas', 'GepexController@search_todas')->middleware('auth')->name('gepex.search_todas');
 
     Route::get('/gepex/{id}/secretaria', 'GepexController@secretaria')->middleware('auth')->name('gepex-secretaria');
