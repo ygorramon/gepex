@@ -278,6 +278,22 @@ return [
             'can' => 'prefeito'
             
         ],
+        ['header' => 'Relatórios',
+    'can' => 'prefeito'],
+        [
+            'text' => 'Geral',
+            'url'  => 'admin/relatorios',
+            'icon' => 'fas fa-duotone fa-map-pin',
+            'can' => 'prefeito'
+            
+        ],
+        [
+            'text' => 'Etapas',
+            'url'  => 'admin/relatorios/etapas',
+            'icon' => 'fas fa-duotone fa-map-pin',
+            'can' => 'prefeito'
+            
+        ],
     ],
 
     /*

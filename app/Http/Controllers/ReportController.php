@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 class ReportController extends Controller
 {
     public function index(){
+       
         $secretaries = Secretary::all();
         return view ('admin.relatorios.index', compact ('secretaries'));
     }

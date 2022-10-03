@@ -120,8 +120,36 @@
                                             {{ setDateConclusion($gepex_step->prevision_date)->value }} 
                                             @endif
                                             </td>
-                                       
-                                       
+                                       <td>  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal{{$gepex_step->id}}">
+                           Mudar Previsão de Conclusão
+                        </button> </td>
+                                      
+                        
+                        <div class="modal fade" id="modal{{$gepex_step->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <form action="{{route('nova-data-etapa',[$gepex_step->gepex->id, $gepex_step->id])}}" method="post">
+                                    {!! csrf_field() !!}
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Mudar Data de Conclusão </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <label> Nova Data</label>
+                                            <input class="form-control" name="prevision_date" type="date" required>
+                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button  class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                            <button type="submit" class="btn btn-primary">ENVIAR</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                                     </tr>
                                 @empty
                                     <tr>

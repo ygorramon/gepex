@@ -257,6 +257,19 @@ class GepexController extends Controller
         return redirect()->route('gepex-ver-etapas', $gepex->id);
     }
 
+    public function nova_data($id, $etapaid, Request $request)
+    {
+
+        $gepex = Gepex::find($id);
+        $steps = $gepex->steps;
+        $gepex->steps()->updateExistingPivot($etapaid, [
+            'prevision_date' => $request->prevision_date
+        ]);
+
+
+        return redirect()->route('relatorios.etapas');
+    }
+
     public function enviar_para_aprovacao($id)
     {
         $gepex = Gepex::find($id);
