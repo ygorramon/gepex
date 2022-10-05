@@ -128,7 +128,7 @@
                         <div class="modal fade" id="modal{{$gepex_step->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
-                                    <form action="{{route('nova-data-etapa',[$gepex_step->gepex->id, $gepex_step->id])}}" method="post">
+                                    <form action="{{route('nova-data-etapa',[$gepex_step->gepex->id, $gepex_step->step->id])}}" method="post">
                                     {!! csrf_field() !!}
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLongTitle">Mudar Data de Conclusão </h5>

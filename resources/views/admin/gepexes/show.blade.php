@@ -20,9 +20,7 @@
     <textarea class="form-control" disabled>{{$gepex->needs}}</textarea>
   
      <label>Objetivos</label>
-    <textarea class="form-control" disabled>{{$gepex->goals}}</textarea>
-   <label>Estratégias</label>
-    <textarea class="form-control" disabled>{{$gepex->strategies}}</textarea>
+  
       <label>STATUS</label>
     <textarea class="form-control" disabled>{{$gepex->status}}</textarea>
       <label>Data de Conclusão</label>

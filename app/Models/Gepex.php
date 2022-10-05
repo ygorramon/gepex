@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Gepex extends Model
 {
     protected $fillable = [
-        'uid', 'needs', 'strategies', 'goals', 'completion_date', 'secretary_id', 'priority', 'status','obs'
+        'uid', 'needs',  'completion_date', 'secretary_id', 'priority', 'status','obs'
     ];
 
     public function secretary()

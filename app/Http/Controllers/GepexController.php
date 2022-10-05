@@ -65,8 +65,7 @@ class GepexController extends Controller
         //  dd($data);
         $this->rules = [
             'need' => 'required',
-            'goals' => 'required',
-            'strategies' => 'required',
+           
 
         ];
         /*
@@ -74,9 +73,7 @@ class GepexController extends Controller
        */
         $messages = [
             'name.required' => 'O campo Necessidade é de preenchimento obrigatório',
-            'goals.required' => 'O campo Objetivos é de preenchimento obrigatório',
-            'strategies.required' => 'O campo Estratégias é de preenchimento obrigatório',
-
+            
 
 
 
@@ -97,8 +94,7 @@ class GepexController extends Controller
         $secretary->gepexes()->create([
             'uid' =>   $uid,
             'needs' => $data['need'],
-            'goals' => $data['goals'],
-            'strategies' => $data['strategies'],
+          
             'priority' =>  $data['priority'],
             'completion_date' => $data['completion_date'],
             'status' => 'LANÇADO'
@@ -259,7 +255,7 @@ class GepexController extends Controller
 
     public function nova_data($id, $etapaid, Request $request)
     {
-
+//dd($id);
         $gepex = Gepex::find($id);
         $steps = $gepex->steps;
         $gepex->steps()->updateExistingPivot($etapaid, [

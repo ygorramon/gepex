@@ -58,28 +58,12 @@
     <div class="row">
         
     <div class="form-group col-md-12">
-        <label >Identificação da necessidade, demanda ou oportunidade:</label>
+        <label >Descrição da GEPEX:</label>
         <textarea  rows="10"  name="need" required="" class="form-control">{{$gepex->need ?? ''}}</textarea>
     </div>
    
     </div>
-    <div class="row">
-        
-    <div class="form-group col-md-12">
-        <label >Definição dos Objetivos:</label>
-        <textarea  rows="10"  name="goals" required="" class="form-control">{{$gepex->goals ?? ''}}</textarea>
-    </div>
-   
-    </div>
-
-    <div class="row">
-        
-    <div class="form-group col-md-12">
-        <label >Definição das Estratégias:</label>
-        <textarea  rows="10"  name="strategies" required="" class="form-control">{{$gepex->strategies ?? ''}}</textarea>
-    </div>
-   
-    </div>
+    
 <div class="row">
    <div class="form-group  col-md-3">
     <button class="btn btn-success">  <span class="glyphicon glyphicon-ok"></span> Salvar</button>
