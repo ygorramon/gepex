@@ -45,8 +45,8 @@ class SecretaryController extends Controller
        * Regras
        */
         $this->rules = [
-            'name' => 'required|max:200|min:3|unique:Secretaries',
-            'initials' =>'required|max:200|min:3|unique:Secretaries',
+            'name' => 'required|max:200|min:3|unique:secretaries',
+            'initials' =>'required|max:200|min:3|unique:secretaries',
 
         ];
         /*
