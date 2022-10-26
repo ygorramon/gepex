@@ -60,7 +60,8 @@
                                     </div>
                                  
                                     
-                                    <button type="submit" class="btn btn-success" class="form-control">Filtrar</button>
+                                    <button type="submit" class="btn btn-success" value="filtro" name="acao" class="form-control">Filtrar</button>
+                                    <button type="submit" class="btn btn-success" value="pdf"	name="acao" class="form-control">Gerar PDF</button>
                                 </form>
 
 
@@ -89,13 +90,13 @@
                                         Secretaria</th>
                                         <th width="10%" class="sorting" tabindex="0" aria-controls="example2"
                                         rowspan="1" colspan="1" aria-label="city: activate to sort column ascending">
-                                        ETAPA</th>
+                                        Etapa</th>
                                     <th width="10%" class="sorting" tabindex="0" aria-controls="example2"
                                         rowspan="1" colspan="1" aria-label="city: activate to sort column ascending">
-                                        STATUS</th>
+                                        Status</th>
                                     <th width="10%" class="sorting" tabindex="0" aria-controls="example2"
                                         rowspan="1" colspan="1" aria-label="city: activate to sort column ascending">
-                                        PREVISÃO DE CONCLUSÃO</th>
+                                        <center>Previsão de Conclusão</center></th>
 
                                     <th tabindex="0" aria-controls="example2" rowspan="1" colspan="2"
                                         aria-label="Action: activate to sort column ascending">Ação</th>
