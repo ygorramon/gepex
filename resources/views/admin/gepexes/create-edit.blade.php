@@ -56,11 +56,16 @@
    
     </div>
     <div class="row">
-        
+        <div class="form-group col-md-3">
+        <label >Orçamento aproximado:</label>
+        <input type="text" id="price" name="price" autocomplete="off" name="name" required minlength="5" class="form-control" >
+    </div>
     <div class="form-group col-md-12">
         <label >Descrição da GEPEX:</label>
         <textarea  rows="10"  name="need" required="" class="form-control">{{$gepex->need ?? ''}}</textarea>
     </div>
+   
+   
    
     </div>
     
@@ -73,6 +78,14 @@
 
     </div>
 </div>
+@section('js')
+<script>
+$(document).ready(function(){
+  $('#price').inputmask({ alias: "currency", groupSeparator:false});  //static mask
+ 
+});
 
+</script>
+@endsection
 
 @stop
