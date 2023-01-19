@@ -26,7 +26,7 @@
                             <tr role="row">
                                 <th >ETAPA</th>
                                     
-                                <th >CONDIÇÃO</th>
+                                <th >STATUS</th>
                                 <th >PREVISÃO DE CONCLUSÃO</th>
                                 <th >DATA DE CONCLUSÃO</th>
                                 <th >SITUAÇÃO ATUAL</th>
