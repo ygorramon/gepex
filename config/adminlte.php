@@ -287,13 +287,7 @@ return [
             'can' => 'prefeito'
             
         ],
-        [
-            'text' => 'Etapas',
-            'url'  => 'admin/relatorios/etapas',
-            'icon' => 'fas fa-duotone fa-map-pin',
-            'can' => 'prefeito'
-            
-        ],
+        
     ],
 
     /*
