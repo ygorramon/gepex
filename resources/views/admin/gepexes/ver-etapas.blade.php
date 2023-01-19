@@ -24,12 +24,12 @@
                         aria-describedby="example2_info">
                         <thead>
                             <tr role="row">
-                                <th >Etapa</th>
+                                <th >ETAPA</th>
                                     
-                                <th >Situação</th>
-                                <th >Previsão de Completar</th>
-                                <th >Data de Conclusão</th>
-                                <th >Observações</th>
+                                <th >CONDIÇÃO</th>
+                                <th >PREVISÃO DE CONCLUSÃO</th>
+                                <th >DATA DE CONCLUSÃO</th>
+                                <th >SITUAÇÃO ATUAL</th>
 
                                 <th >Ação</th>
                             </tr>
@@ -39,7 +39,6 @@
                                 <tr role="row" class="odd">
 
                                     <td> {{ $step->name }} </td>
-                                    <td> {{ $step->description }} </td>
                                   <td> <span class="badge {{ setfinished($step->pivot->finished)->color }}">{{ setfinished($step->pivot->finished)->value }} </span></td>
                                   <td> @if(isset($step->pivot->prevision_date)){{ setDate($step->pivot->prevision_date) }} @endif </td>
                                   <td> @if(isset($step->pivot->completion_date)){{ setDate($step->pivot->completion_date) }} @endif </td>
