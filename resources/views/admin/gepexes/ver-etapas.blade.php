@@ -31,7 +31,7 @@
                                 <th >DATA DE CONCLUSÃO</th>
                                 <th >SITUAÇÃO ATUAL</th>
 
-                                <th >Ação</th>
+                                <th >AÇÃO</th>
                             </tr>
                         </thead>
                         <tbody>
