@@ -17,7 +17,8 @@ class CreateGepexesTable extends Migration
             $table->bigIncrements('id');
             $table->string('uid', 155)->unique();
             $table->text('needs')->nullable();
-            $table->text('strategies')->nullable();
+            $table->float('price',20, 2);
+           $table->text('strategies')->nullable();
             $table->text('goals')->nullable();
             $table->text('obs')->nullable();
             $table->date('completion_date')->nullable();

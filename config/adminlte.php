@@ -401,6 +401,26 @@ return [
                 ],
             ],
         ],
+        'InputMask' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/inputmask/inputmask.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/inputmask/inputmask.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/inputmask/jquery.inputmask.js',
+                ],
+            ],
+        ],
         'Daterangepicker' =>[
             'active' => true,
             'files' => [

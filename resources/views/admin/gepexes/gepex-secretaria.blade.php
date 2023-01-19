@@ -58,17 +58,10 @@
                                     </div>
                                     <div class="form-group mx-sm-3 mb-2">
 
-                                        <label> Período</label> <select name="tempo" class="form-control">
-                                            <option value="">Selecione</option>
-                                            <option @if(isset($request) && $request->tempo==15) selected selected @endif value="15">Últimos 15 Dias</option>
-                                            <option @if(isset($request) && $request->tempo==30)  selected @endif value="30">Últimos 30 Dias</option>
-                                            <option @if(isset($request) && $request->tempo==60) selected @endif  value="60">Últimos 60 Dias</option>
-                                            <option @if(isset($request) && $request->tempo==90)  selected @endif value="90">Últimos 90 Dias</option>
-                                            <option @if(isset($request) && $request->tempo==180)  selected @endif value="180">Últimos 180 Dias</option>
-                                            <option @if(isset($request) && $request->tempo==365) " selected @endif value="365">Último Ano</option>
-
-
-                                        </select>
+                                        <label> De</label>
+                                        <input type="date" name="data_inicio" class="form-control" value="{{$request->data_inicio ?? ''}}">
+                                        <label> Até</label>
+                                        <input type="date" name="data_fim" class="form-control"  value="{{$request->data_fim ?? ''}}">
                                     </div>
                                     <button type="submit" class="btn btn-success" class="form-control">Filtrar</button>
                                 </form>

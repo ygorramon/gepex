@@ -20,6 +20,7 @@ Route::prefix('admin')->middleware('can:prefeito')->group(
     Route::resource('/usuario', 'UserController')->middleware('auth');
     Route::resource('/etapa', 'StepController')->middleware('auth');
     Route::resource('/secretaria', 'SecretaryController')->middleware('auth');
+    Route::get('/secretaria_pdf', 'ReportController@relatorio')->middleware('auth');
     Route::resource('/perfil', 'PerfilController')->middleware('auth');
     Route::get('/secretaria/{id}/servidores', 'SecretaryController@servidores')->middleware('auth');
     Route::get('/secretaria/{id}/editar-servidores', 'SecretaryController@adicionarServidores')->middleware('auth');

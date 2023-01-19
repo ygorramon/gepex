@@ -97,6 +97,7 @@ class GepexController extends Controller
           
             'priority' =>  $data['priority'],
             'completion_date' => $data['completion_date'],
+            'price' => $data['price'],
             'status' => 'LANÇADO'
         ]);
 
@@ -294,10 +295,12 @@ class GepexController extends Controller
                 }
             })
             ->where(function ($query) use ($request) {
-                if ($request->tempo) {
-                $query->where('created_at', '>', now()->subDays($request->tempo));
+                if ($request->data_inicio && $request->data_fim) {
+                $query->whereBetween('created_at', [$request->data_inicio, $request->data_fim]);
+              //  $query->where('created_at', '>', now()->subDays($request->tempo));
                 }
-            })->where('secretary_id',$request->secretary_id)
+            })
+            ->where('secretary_id',$request->secretary_id)
             
             ->latest()
             ->get();
@@ -326,8 +329,9 @@ class GepexController extends Controller
                 }
             })
             ->where(function ($query) use ($request) {
-                if ($request->tempo) {
-                $query->where('created_at', '>', now()->subDays($request->tempo));
+                if ($request->data_inicio && $request->data_fim) {
+                    $query->whereBetween('created_at', [$request->data_inicio, $request->data_fim]);
+                    //  $query->where('created_at', '>', now()->subDays($request->tempo));
                 }
             })
             ->where(function ($query) use ($request) {
