@@ -280,14 +280,14 @@ return [
         ],
         ['header' => 'Relatórios',
     'can' => 'prefeito'],
+        
         [
-            'text' => 'Geral',
-            'url'  => 'admin/relatorios',
+            'text' => 'Etapas',
+            'url'  => 'admin/relatorios/etapas',
             'icon' => 'fas fa-duotone fa-map-pin',
             'can' => 'prefeito'
             
         ],
-        
     ],
 
     /*
