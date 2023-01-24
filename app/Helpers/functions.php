@@ -2,6 +2,14 @@
 
 use App\Models\Gepex;
 
+
+function convertPrice($value){
+    $value = str_replace(".", "", $value);
+    $value = str_replace(",", ".", $value);
+
+   return ($value);
+}
+
 function setPriority($value){
   
     if ($value==1){

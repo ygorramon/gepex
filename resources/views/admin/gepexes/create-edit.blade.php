@@ -82,7 +82,7 @@
 @section('js')
 <script>
 $(document).ready(function(){
-  $('#price').inputmask({ alias: "currency", groupSeparator:false});  //static mask
+  $('#price').inputmask({ alias: "currency", radixPoint:"," });  //static mask
  
 });
 

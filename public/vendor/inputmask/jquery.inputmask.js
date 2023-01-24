@@ -2670,7 +2670,7 @@
             },
             currency: {
                 prefix: "",
-                groupSeparator: ",",
+                groupSeparator: ".",
                 alias: "numeric",
                 digits: 2,
                 digitsOptional: !1

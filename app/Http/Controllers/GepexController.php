@@ -57,6 +57,7 @@ class GepexController extends Controller
      */
     public function store(Request $request, $id)
     {
+
         $secretary = Secretary::find($id);
         $data = $request->all();
         /*
@@ -97,7 +98,7 @@ class GepexController extends Controller
           
             'priority' =>  $data['priority'],
             'completion_date' => $data['completion_date'],
-            'price' => $data['price'],
+            'price' => convertPrice($data['price']),
             'status' => 'LANÇADO'
         ]);
 
