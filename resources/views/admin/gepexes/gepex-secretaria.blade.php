@@ -24,7 +24,7 @@
                     <div class="col-sm-12 ">
                         <div class="card">
                             <div class="card-body">
-                                <h3>GEPEX's - {{ $secretary->name }}</h3>
+                                <h3>GEPEX - {{ $secretary->name }}</h3>
                                 <form class="form-inline" action="{{ route('gepex.search') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="secretary_id" value="{{$secretary->id}}" ">
@@ -50,8 +50,9 @@
 
                                         <label> Nível</label> <select name="priority" class="form-control">
                                             <option value="">Selecione</option>
-                                            <option @if(isset($request) && $request->priority=='1') selected @endif value="1">SETORIAL</option>
-                                            <option @if(isset($request) && $request->priority=='2') selected @endif value="2">PRIORITÁRIO</option>
+                                            <option @if(isset($request) && $request->priority=='1') selected @endif value="1">NORMAL</option>
+                                            <option @if(isset($request) && $request->priority=='2') selected @endif value="2">MÉDIO</option>
+                                            <option @if(isset($request) && $request->priority=='3') selected @endif value="2">MÁXIMO</option>
 
 
                                         </select>
@@ -74,27 +75,29 @@
                     <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
                         aria-describedby="example2_info">
                         <thead>
-                            <tr role="row">
+                            <CENTER>
+                            <tr role="row" align="CENTER">
                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                     aria-label="city: activate to sort column ascending">
-                                    GEPEXS</th>
+                                    GEPEX</th>
                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                     aria-label="city: activate to sort column ascending">
-                                    Necessidade</th>
+                                    NECESSIDADE</th>
                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                     aria-label="city: activate to sort column ascending">
                                     STATUS</th>
                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                     aria-label="city: activate to sort column ascending">
-                                    Nível</th>
+                                    NÍVEL</th>
 
                                 <th tabindex="0" aria-controls="example2" rowspan="1" colspan="2"
                                     aria-label="Action: activate to sort column ascending">Ação</th>
                             </tr>
+                        </CENTER>
                         </thead>
                         <tbody>
                             @forelse($gepexes as $gepex)
-                                <tr role="row" class="odd">
+                                <tr role="row" class="odd" align="CENTER">
 
                                     <td> {{ $gepex->uid }} <br>
                                         <b>Criado em:</b> {{ setDate($gepex->created_at) }}

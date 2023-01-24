@@ -16,6 +16,13 @@
 
                 <div class="content">
                     <div class="col-sm-12 ">
+                        <div class="form-group col-md-12">
+        <label >DESCRIÇÃO DA GEPEX:</label>
+       {{$gepex->needs}}
+    </div>
+                         <label>DATA DE CONCLUSÃO</label>
+                <input class="form-control" type="date" disabled value="{{ $gepex->completion_date }}">
+                <br>
                         <form action="{{ route('gepex-defenir-etapas-post', $gepex->id) }}" method="post"
                             class="form-group">
                             {!! csrf_field() !!}

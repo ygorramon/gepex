@@ -19,7 +19,6 @@
     <label>Necessidade</label>
     <textarea class="form-control" disabled>{{$gepex->needs}}</textarea>
   
-     <label>Objetivos</label>
   
       <label>STATUS</label>
     <textarea class="form-control" disabled>{{$gepex->status}}</textarea>

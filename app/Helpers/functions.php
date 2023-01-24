@@ -5,11 +5,15 @@ use App\Models\Gepex;
 function setPriority($value){
   
     if ($value==1){
-        $data['value']="SETORIAL";
-        $data['color']="bg-blue";
+        $data['value']="NORMAL";
+        $data['color']="bg-purple";
     }
     if ($value == 2) {
-        $data['value'] = "PRIORITÁRIO";
+        $data['value'] = "MÉDIO";
+        $data['color']="bg-blue";
+    }
+    if ($value == 3) {
+        $data['value'] = "MÁXIMO";
         $data['color']="bg-red";
     }
     

@@ -15,30 +15,18 @@
             </ol>
 
             <div class="content">
-                <h1 class="title-pg">Dados da GEPEX - {{ $gepex->uid }}</h1>
+                <h1 class="title-pg">DADOS DA GEPEX - {{ $gepex->uid }}</h1>
 
-                <label>Necessidade</label>
+                <label>NECESSIDADE</label>
                 <textarea class="form-control" disabled>{{ $gepex->needs }}</textarea>
 
-                <label>Objetivos</label>
-                <textarea class="form-control" disabled>{{ $gepex->goals }}</textarea>
-                <label>Estratégias</label>
-                <textarea class="form-control" disabled>{{ $gepex->strategies }}</textarea>
+               
                 <label>STATUS</label>
                 <textarea class="form-control" disabled>{{ $gepex->status }}</textarea>
-                <label>Data de Conclusão</label>
+                <label>DATA DE CONCLUSÃO</label>
                 <input class="form-control" type="date" disabled value="{{ $gepex->completion_date }}">
                 <br>
-                <div class="card">
-
-                    <div class="card-body">
-                        <label>Etapas Sugeridas</label>
-                        @forelse($gepex->steps as $step)
-                        <input class="form-control" disabled value="{{ $step->name }}"> <br>
-                        @empty
-                        @endforelse
-                    </div>
-                </div>
+               
                 <br>
                 <div class="card">
 
@@ -66,11 +54,12 @@
                                         <div class="modal-body">
 
                                             <label>Nível de Prioridade:</label>
-                                            <select name="priority" class="form-control" required>
+                                           <select name="priority" class="form-control" required>
                                                 <option value="">Selecione</option>
 
-                                                <option @if($gepex->priority==1) selected @endif value=" 1" style="background-color:rgb(0, 0, 255); color:rgb(255, 255, 255)">SETORIAL</option>
-                                                <option @if($gepex->priority==2) selected @endif value="2" style="background-color:rgb(255, 0, 0); color:black">PRIORITÁRIO</option>
+                                                <option @if($gepex->priority==1) selected @endif value=" 1" style="background-color:	rgb(230,230,250); color:rgb(255, 255, 255)">NORMAL</option>
+                                                <option @if($gepex->priority==2) selected @endif value="2" style="background-color:rgb(255, 0, 0); color:black">MÉDIO</option>
+                                                <option @if($gepex->priority==3) selected @endif value="3" style="background-color:rgb(255, 0, 0); color:black">MÁXIMO</option>
 
 
                                             </select>
@@ -99,11 +88,12 @@
                                         <div class="modal-body">
 
                                             <label>Nível de Prioridade:</label>
-                                            <select name="priority" class="form-control" required>
+                                           <select name="priority" class="form-control" required>
                                                 <option value="">Selecione</option>
 
-                                                <option @if($gepex->priority==1) selected @endif value=" 1" style="background-color:rgb(0, 0, 255); color:rgb(255, 255, 255)">SETORIAL</option>
-                                                <option @if($gepex->priority==2) selected @endif value="2" style="background-color:rgb(255, 0, 0); color:black">PRIORITÁRIO</option>
+                                                <option @if($gepex->priority==1) selected @endif value=" 1" style="background-color:rgb(0, 0, 255); color:rgb(255, 255, 255)">NORMAL</option>
+                                                <option @if($gepex->priority==2) selected @endif value="2" style="background-color:rgb(255, 0, 0); color:black">MÉDIO</option>
+                                                <option @if($gepex->priority==3) selected @endif value="3" style="background-color:rgb(255, 0, 0); color:black">MÁXIMO</option>
 
 
                                             </select>
@@ -135,8 +125,9 @@
                                             <select name="priority" class="form-control" required>
                                                 <option value="">Selecione</option>
 
-                                                <option @if($gepex->priority==1) selected @endif value=" 1" style="background-color:rgb(0, 0, 255); color:rgb(255, 255, 255)">SETORIAL</option>
-                                                <option @if($gepex->priority==2) selected @endif value="2" style="background-color:rgb(255, 0, 0); color:black">PRIORITÁRIO</option>
+                                                <option @if($gepex->priority==1) selected @endif value=" 1" style="background-color:rgb(0, 0, 255); color:rgb(255, 255, 255)">NORMAL</option>
+                                                <option @if($gepex->priority==2) selected @endif value="2" style="background-color:rgb(255, 0, 0); color:black">MÉDIO</option>
+                                                <option @if($gepex->priority==3) selected @endif value="3" style="background-color:rgb(255, 0, 0); color:black">MÁXIMO</option>
 
 
                                             </select>
