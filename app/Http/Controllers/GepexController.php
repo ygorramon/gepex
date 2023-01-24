@@ -181,7 +181,15 @@ class GepexController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        if ( !$gepex = Gepex::find($id)) {
+            return redirect()->back();
+        }
+        
+        $gepex->delete();
+
+        return redirect()->route('gepex-secretaria', $gepex->secretary->id);
+
     }
 
     public function gepex_enviadas()

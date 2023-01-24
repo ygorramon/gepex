@@ -46,8 +46,8 @@
        <select name="priority" class="form-control">
                 <option ">Selecione</option>
         
-        <option value="1" style="background-color:rgb(0, 0, 255); color:rgb(255, 255, 255)">NORMAL</option>
-        <option value="2" style="background-color:rgb(255, 0, 0); color:black">MÉDIO</option>
+        <option value="1" style="background-color:	rgb(230,230,250); color:black"">NORMAL</option>
+        <option value="2" style="background-color:rgb(0, 0, 255); color:black">MÉDIO</option>
         <option value="3" style="background-color:rgb(255, 0, 0); color:black">MÁXIMO</option>
         
 

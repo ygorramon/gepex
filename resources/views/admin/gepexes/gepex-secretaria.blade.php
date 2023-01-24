@@ -129,7 +129,13 @@
                                             <span class="glyphicon glyphicon-hand-up"></span> Visualizar</a>
 
 
-
+                                            @can('admin')
+                                           <form action="{{ route('gepex.destroy', $gepex->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">DELETAR </button>
+            </form>
+                                            @endcan
                                     </td>
 
 

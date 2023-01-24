@@ -15,7 +15,7 @@
 
                 <div class="row content">
                     <div class="col-sm-12 ">
-                        <h3>GEPEX's Enviadas para aprovação</h3>
+                        <h3>GEPEX Enviadas para aprovação</h3>
                         
                         <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
                             aria-describedby="example2_info">
@@ -23,19 +23,19 @@
                                 <tr role="row">
                                     <th width="10%" class="sorting" tabindex="0" aria-controls="example2"
                                         rowspan="1" colspan="1" aria-label="city: activate to sort column ascending">
-                                        GEPEXS</th>
+                                        GEPEX</th>
                                     <th width="50%" class="sorting" tabindex="0" aria-controls="example2"
                                         rowspan="1" colspan="1" aria-label="city: activate to sort column ascending">
-                                        Necessidade</th>
+                                        NECESSIDADE</th>
                                         <th width="10%" class="sorting" tabindex="0" aria-controls="example2"
                                         rowspan="1" colspan="1" aria-label="city: activate to sort column ascending">
-                                        Secretaria</th>
+                                        SECRETARIA</th>
                                     <th width="10%" class="sorting" tabindex="0" aria-controls="example2"
                                         rowspan="1" colspan="1" aria-label="city: activate to sort column ascending">
                                         STATUS</th>
                                     <th width="10%" class="sorting" tabindex="0" aria-controls="example2"
                                         rowspan="1" colspan="1" aria-label="city: activate to sort column ascending">
-                                        Nível</th>
+                                        NÍVEL</th>
 
                                     <th tabindex="0" aria-controls="example2" rowspan="1" colspan="2"
                                         aria-label="Action: activate to sort column ascending">Ação</th>
