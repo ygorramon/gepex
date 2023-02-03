@@ -263,28 +263,12 @@ return [
             'icon' => 'fas fa-duotone fa-map-pin',
             'can' => 'admin'
         ],
-        ['header' => 'Administração de GEPEXs'],
-        [
-            'text' => 'Minhas GEPEXs',
-            'url'  => 'admin/gepex',
-            'icon' => 'fas fa-duotone fa-map-pin',
-            'can' => 'secretaria'
-            
-        ],
-        [
-            'text' => 'GEPEX Enviadas',
-            'url'  => 'admin/gepex-enviadas',
-            'icon' => 'fas fa-duotone fa-map-pin',
-            'can' => 'prefeito'
-            
-        ],
-        [
-            'text' => 'GEPEX em Execução',
-            'url'  => 'admin/gepex-execucao',
-            'icon' => 'fas fa-duotone fa-map-pin',
-            'can' => 'prefeito'
-            
-        ],
+        ['header' => 'Administração de GEPEXs',
+    'key' => 'menu'],
+       
+        
+       
+       
         ['header' => 'Relatórios',
     'can' => 'prefeito'],
         

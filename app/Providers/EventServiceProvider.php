@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Gepex;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -29,6 +31,44 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        Event::listen(
+            BuildingMenu::class,
+            function (BuildingMenu $event) {
+
+                // Add some items to the menu...
+               
+
+                $event->menu->addAfter('menu',[
+                    'text' => 'GEPEX em Execução',
+                    'url'  => 'admin/gepex-execucao',
+                    'icon' => 'fas fa-duotone fa-map-pin',
+                    'can' => 'prefeito',
+                    'label' => Gepex::where('status', 'EM EXECUÇÃO')->count(),
+                ]);
+
+                $event->menu->addAfter('menu', [
+                    'text' => 'GEPEX Enviadas',
+                    'url'  => 'admin/gepex-enviadas',
+                    'icon' => 'fas fa-duotone fa-map-pin',
+                    'can' => 'prefeito',
+                    'label' => Gepex::where('status', 'ENVIADO')->count(),
+
+
+
+                ]);
+                $event->menu->addAfter(
+                    'menu',
+                    
+                 [
+            'text' => 'Minhas GEPEXs',
+            'url'  => 'admin/gepex',
+            'icon' => 'fas fa-duotone fa-map-pin',
+            'can' => 'secretaria'
+            
+        ],
+         );
+            }
+            
+        );
     }
 }
