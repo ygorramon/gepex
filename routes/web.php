@@ -29,8 +29,8 @@ Route::prefix('admin')->middleware('can:prefeito')->group(
     Route::get('/perfil/{id}/editar-servidores', 'PerfilController@adicionarServidores')->middleware('auth');
     Route::post('perfil/{id}/editar-servidores', 'PerfilController@storeServidores')->middleware('auth');
     Route::post('/gepex/{id}/enviar-aprovacao', 'GepexController@enviar_aprovacao')->middleware('auth')->name('gepex-enviar-aprovacao');
-    Route::get('/gepex-enviadas', 'GepexController@gepex_enviadas')->middleware('auth')->name('gepex-enviadas');
-    Route::get('/gepex-enviadas-secretaria', 'GepexController@gepex_envidas_index')->middleware('auth')->name('gepex-enviadas-index');
+    Route::get('/gepex-enviadas', 'GepexController@gepex_envidas_index')->middleware('auth')->name('gepex-enviadas');
+   // Route::get('/gepex-enviadas-secretaria', 'GepexController@gepex_envidas_index')->middleware('auth')->name('gepex-enviadas-index');
     Route::get('/gepex-enviadas/{id}/secretaria', 'GepexController@gepex_enviadas_secretarias')->middleware('auth')->name('gepex-enviadas-secretarias');
     Route::get('/gepex-execucao', 'GepexController@gepex_execucao')->middleware('auth')->name('gepex-execucao');
     Route::get('/gepex-todas', 'GepexController@gepex_todas')->middleware('auth')->name('gepex-todas');
