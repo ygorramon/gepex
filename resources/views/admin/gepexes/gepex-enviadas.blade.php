@@ -15,7 +15,7 @@
 
                 <div class="row content">
                     <div class="col-sm-12 ">
-                        <h3>GEPEX Enviadas para aprovação</h3>
+                        <h3>GEPEX Enviadas para aprovação - {{$secretary->name}}</h3>
                         
                         <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
                             aria-describedby="example2_info">

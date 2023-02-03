@@ -64,7 +64,7 @@
                                           
                                                
                                             <a href="{{route('gepex-defenir-etapas',$gepex->id)}}" class="btn btn-info">
-                                                <span class="glyphicon glyphicon-hand-up"></span> Redefinir Etapas</a>
+                                                <span class="glyphicon glyphicon-hand-up"></span> Redefinir Etapas / Prazo</a>
 
                                                
 
