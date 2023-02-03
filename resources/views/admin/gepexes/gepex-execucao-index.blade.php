@@ -28,7 +28,7 @@
                     <tr role="row" class="odd" >
                         
                         <td > {{$secretary->name}} </td>
-                        <td > {{$secretary->gepexes->where('status','EM EXECUCAO')->count()}} </td>
+                        <td > {{$secretary->gepexes->where('status','EM EXECUÇÃO')->count()}} </td>
                        
                         
                         <td>
