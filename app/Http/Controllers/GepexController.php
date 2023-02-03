@@ -27,6 +27,14 @@ class GepexController extends Controller
         $secretaries = Auth::user()->secretaries()->paginate();
         return view('admin.gepexes.index', compact('secretaries'));
     }
+    public function gepex_envidas_index()
+    {
+      
+    
+       
+        $secretaries = Secretary::all();
+        return view('admin.gepexes.gepex-enviadas-index', compact('secretaries'));
+    }
 
     public function secretaria($id)
     {
@@ -198,6 +206,13 @@ class GepexController extends Controller
         $gepexes = Gepex::whereIn('status', ['ENVIADO','APROVADO'])->get();
         return view('admin.gepexes.gepex-enviadas', compact('gepexes'));
     }
+
+    public function gepex_execucao()
+    {
+        $gepexes = Gepex::whereIn('status', ['EM EXECUÇÃO'])->get();
+        return view('admin.gepexes.gepex-execucao', compact('gepexes'));
+    }
+
     public function gepex_todas()
     {
         $gepexes = Gepex::all();

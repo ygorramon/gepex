@@ -93,6 +93,12 @@ function setDate($value){
     return Carbon\Carbon::parse($value)->format('d/m/Y');
     
 }
+
+
+function setDateNew($value){
+    return Carbon\Carbon::parse($value)->format('Y-m-d');
+    
+}
 function setDateConclusion($value){
 
     $data['value'] = "";

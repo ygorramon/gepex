@@ -28,7 +28,7 @@
                                     
                                 <th >STATUS</th>
                                 <th >PREVISÃO DE CONCLUSÃO</th>
-                                <th >DATA DE CONCLUSÃO</th>
+                                <th >DATA DE ATUALIZAÇÃO</th>
                                 <th >SITUAÇÃO ATUAL</th>
 
                                 <th >AÇÃO</th>
@@ -72,7 +72,7 @@
 
 
                                             </select><label> Data de Atualização</label>
-                                            <input class="form-control" name="completion_date" type="date" required>
+                                            <input class="form-control" name="completion_date" type="date" required  value="{{ setDateNew(now()) }}">
                                             <label>Observações</label>
                                             <textarea name="obs" class="form-control"></textarea>
                                         </div>

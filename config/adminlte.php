@@ -272,8 +272,15 @@ return [
             
         ],
         [
-            'text' => 'GEPEXs Enviadas',
+            'text' => 'GEPEX Enviadas',
             'url'  => 'admin/gepex-enviadas',
+            'icon' => 'fas fa-duotone fa-map-pin',
+            'can' => 'prefeito'
+            
+        ],
+        [
+            'text' => 'GEPEX em Execução',
+            'url'  => 'admin/gepex-execucao',
             'icon' => 'fas fa-duotone fa-map-pin',
             'can' => 'prefeito'
             
