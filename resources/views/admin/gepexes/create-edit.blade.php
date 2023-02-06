@@ -34,17 +34,17 @@
     <div class="row">
         
     <div class="form-group col-md-6">
-        <label >Secretaria:</label><input type="text" disabled="true" autocomplete="off" name="name" required minlength="5" class="form-control" value="{{$secretary->name}}" >
+        <label >Secretaria:</label><input type="text" disabled="true" autocomplete="off" name="name"  minlength="5" class="form-control" value="{{$secretary->name}}" >
     </div>
     <div class="form-group col-md-3">
-        <label >Data para conclusão:</label><input type="date"  autocomplete="off" name="completion_date" required minlength="5" class="form-control" >
+        <label >Data para conclusão:</label><input type="date"  autocomplete="off" name="completion_date"  minlength="5" class="form-control" >
     </div>
     
         
     <div class="form-group col-md-3">
         <label >Nível de Prioridade:</label>
        <select name="priority" class="form-control">
-                <option ">Selecione</option>
+                <option value="" >Selecione</option>
         
         <option value="1" style="background-color:	rgb(230,230,250); color:black"">NORMAL</option>
         <option value="2" style="background-color:rgb(0, 0, 255); color:black">MÉDIO</option>
@@ -63,7 +63,7 @@
     </div>
     <div class="form-group col-md-12">
         <label >Descrição da GEPEX:</label>
-        <textarea  rows="10"  name="need" required="" class="form-control">{{$gepex->need ?? ''}}</textarea>
+        <textarea  rows="10"  name="need"  class="form-control">{{$gepex->need ?? ''}}</textarea>
     </div>
    
    

@@ -99,19 +99,21 @@ class GepexController extends Controller
         /*
        * Regras
        */
-        //  dd($data);
+         // dd($data);
         $this->rules = [
             'need' => 'required',
-           
-
+            'price'=> 'required',
+            'completion_date' =>'required',
+            'priority' => 'required',
         ];
         /*
        * Mensagens
        */
         $messages = [
-            'name.required' => 'O campo Necessidade é de preenchimento obrigatório',
-            
-
+            'need.required' => 'O campo Necessidade é de preenchimento obrigatório',
+            'price.required' =>' campo Necessidade é de preenchimento obrigatório',
+            'completion_date.required' => 'O campo Data para Conclusão é de preenchimento obrigatório',
+            'priority.required' => 'O campo Nível de Prioridade é de pereenchimento obrigatório',
 
 
         ];
@@ -121,7 +123,7 @@ class GepexController extends Controller
 
         $validate = validator($data, $this->rules, $messages);
         if ($validate->fails()) {
-            return redirect()->route('gepex-secretaria-create')
+            return redirect()->route('gepex-secretaria-create', $id )
                 ->withErrors($validate)
                 ->withInput();
         }
