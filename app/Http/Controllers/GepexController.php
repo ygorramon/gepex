@@ -36,6 +36,14 @@ class GepexController extends Controller
         $secretaries = Secretary::all();
         return view('admin.gepexes.gepex-enviadas-index', compact('secretaries'));
     }
+    public function gepex_finalizadas_index()
+    {
+      
+    
+       
+        $secretaries = Secretary::all();
+        return view('admin.gepexes.gepex-finalizadas-index', compact('secretaries'));
+    }
 
         public function gepex_enviadas_secretaria($id){
 
@@ -45,7 +53,14 @@ class GepexController extends Controller
         return view('admin.gepexes.gepex-enviadas', compact('gepexes','secretary'));
       
     }
+    public function gepex_finalizadas_secretaria($id)
+    {
 
+        $secretary = Secretary::find($id);
+        $gepexes =  $secretary->gepexes->where('status', 'FINALIZADO');
+
+        return view('admin.gepexes.gepex-finalizadas', compact('gepexes', 'secretary'));
+    }
     public function gepex_execucao_index()
     {
       
@@ -101,7 +116,7 @@ class GepexController extends Controller
        */
          // dd($data);
         $this->rules = [
-            'need' => 'required',
+            'needs' => 'required',
             'price'=> 'required',
             'completion_date' =>'required',
             'priority' => 'required',
@@ -110,8 +125,8 @@ class GepexController extends Controller
        * Mensagens
        */
         $messages = [
-            'need.required' => 'O campo Necessidade é de preenchimento obrigatório',
-            'price.required' =>' campo Necessidade é de preenchimento obrigatório',
+            'need.required' => 'O campo Descrição da GEPEX é de preenchimento obrigatório',
+            'price.required' =>' campo Orçamento Aproximado é de preenchimento obrigatório',
             'completion_date.required' => 'O campo Data para Conclusão é de preenchimento obrigatório',
             'priority.required' => 'O campo Nível de Prioridade é de pereenchimento obrigatório',
 
@@ -128,11 +143,11 @@ class GepexController extends Controller
                 ->withInput();
         }
 
-        $uid = IdGenerator::generate(['table' => 'gepexes', 'field' => 'uid', 'length' => 10, 'prefix' => $secretary->initials . '-']);
-
+        $uid = IdGenerator::generate(['table' => 'gepexes', 'field' => 'uid', 'length' => 10, 'prefix' => $secretary->initials.'-', 'reset_on_prefix_change'=>true]);
+//dd($uid);
         $secretary->gepexes()->create([
             'uid' =>   $uid,
-            'needs' => $data['need'],
+            'needs' => $data['needs'],
           
             'priority' =>  $data['priority'],
             'completion_date' => $data['completion_date'],
@@ -197,7 +212,8 @@ class GepexController extends Controller
      */
     public function edit($id)
     {
-        //
+       $gepex = Gepex::find($id);
+       return view ('admin.gepexes.create-edit', compact('gepex'));
     }
 
     /**

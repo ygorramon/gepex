@@ -36,8 +36,17 @@ class EventServiceProvider extends ServiceProvider
             function (BuildingMenu $event) {
 
                 // Add some items to the menu...
-               
 
+                $event->menu->addAfter('menu', [
+                    'text' => 'GEPEX Finalizadas',
+                    'url'  => 'admin/gepex-finalizadas',
+                    'icon' => 'fas fa-duotone fa-map-pin',
+                    'can' => 'prefeito',
+                    'label' => Gepex::where('status', 'FINALIZADO')->count(),
+
+
+
+                ]);
                 $event->menu->addAfter('menu',[
                     'text' => 'GEPEX em Execução',
                     'url'  => 'admin/gepex-execucao',
@@ -56,6 +65,7 @@ class EventServiceProvider extends ServiceProvider
 
 
                 ]);
+               
                 $event->menu->addAfter(
                     'menu',
                     
@@ -67,6 +77,7 @@ class EventServiceProvider extends ServiceProvider
             
         ],
          );
+         
             }
             
         );

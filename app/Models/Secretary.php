@@ -16,6 +16,6 @@ class Secretary extends Model
     }
 
     public function gepexes(){
-        return $this->hasMany(\App\Models\Gepex::class);
+        return $this->hasMany(\App\Models\Gepex::class)->orderBy('updated_at','desc');
     }
 }
