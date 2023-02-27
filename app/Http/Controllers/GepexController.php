@@ -78,6 +78,23 @@ class GepexController extends Controller
         return view('admin.gepexes.gepex-execucao', compact('gepexes','secretary'));
       
     }
+    public function gepex_aprovacao_index()
+    {
+      
+    
+       
+        $secretaries = Secretary::all();
+        return view('admin.gepexes.gepex-aprovacao-index', compact('secretaries'));
+    }
+
+        public function gepex_aprovacao_secretaria($id){
+
+        $secretary = Secretary::find($id);
+        $gepexes =  $secretary->gepexes->where('status', 'APROVADO');
+          
+        return view('admin.gepexes.gepex-aprovacao', compact('gepexes','secretary'));
+      
+    }
 
     public function secretaria($id)
     {

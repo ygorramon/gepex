@@ -50,15 +50,22 @@ class EventServiceProvider extends ServiceProvider
                 $event->menu->addAfter('menu',[
                     'text' => 'GEPEX em Execução',
                     'url'  => 'admin/gepex-execucao',
-                    'icon' => 'fas fa-duotone fa-map-pin',
+                    'icon' => 'fas fa-upload',
                     'can' => 'prefeito',
                     'label' => Gepex::where('status', 'EM EXECUÇÃO')->count(),
+                ]);
+                $event->menu->addAfter('menu',[
+                    'text' => 'GEPEX Aprovadas',
+                    'url'  => 'admin/gepex-aprovacao',
+                    'icon' => 'fas fa-download',
+                    'can' => 'prefeito',
+                    'label' => Gepex::where('status', 'APROVADO')->count(),
                 ]);
 
                 $event->menu->addAfter('menu', [
                     'text' => 'GEPEX Enviadas',
                     'url'  => 'admin/gepex-enviadas',
-                    'icon' => 'fas fa-duotone fa-map-pin',
+                    'icon' => 'fas fa-upload',
                     'can' => 'prefeito',
                     'label' => Gepex::where('status', 'ENVIADO')->count(),
 
@@ -72,7 +79,7 @@ class EventServiceProvider extends ServiceProvider
                  [
             'text' => 'Minhas GEPEXs',
             'url'  => 'admin/gepex',
-            'icon' => 'fas fa-duotone fa-map-pin',
+            'icon' => 'fas fa-duotone fa-folder-open',
             'can' => 'secretaria'
             
         ],

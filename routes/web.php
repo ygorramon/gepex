@@ -37,6 +37,8 @@ Route::prefix('admin')->middleware('can:prefeito')->group(
 
     Route::get('/gepex-execucao', 'GepexController@gepex_execucao_index')->middleware('auth')->name('gepex-execucao');
     Route::get('/gepex-execucao/{id}/secretaria', 'GepexController@gepex_execucao_secretaria')->middleware('auth')->name('gepex-execucao-secretarias');
+    Route::get('/gepex-aprovacao', 'GepexController@gepex_aprovacao_index')->middleware('auth')->name('gepex-aprovacao');
+    Route::get('/gepex-aprovacao/{id}/secretaria', 'GepexController@gepex_aprovacao_secretaria')->middleware('auth')->name('gepex-aprovacao-secretarias');
 
     Route::get('/gepex-todas', 'GepexController@gepex_todas')->middleware('auth')->name('gepex-todas');
     Route::get('/analise-gepex/{id}', 'GepexController@analise_gepex')->middleware('auth')->name('gepex-analise');

@@ -28,11 +28,11 @@
                     <tr role="row" class="odd" >
                         
                         <td > {{$secretary->name}} </td>
-                        <td > {{$secretary->gepexes->whereIn('status',['EM EXECUÇÃO'])->count()}} </td>
+                        <td > {{$secretary->gepexes->whereIn('status',['APROVADO'])->count()}} </td>
                        
                         
                         <td>
-                         <a   href="{{route('gepex-execucao-secretarias', $secretary->id)}}"
+                         <a   href="{{route('gepex-aprovacao-secretarias', $secretary->id)}}"
                                     class="btn btn-info">
                                     <span class="glyphicon glyphicon-hand-up"></span> Acessar</a>
                                                        
