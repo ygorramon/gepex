@@ -242,7 +242,50 @@ class GepexController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+$gepex = Gepex::find($id);
+        $data = $request->all();
+        $this->rules = [
+            'needs' => 'required',
+            'price' => 'required',
+            'completion_date' => 'required',
+            'priority' => 'required',
+        ];
+        /*
+       * Mensagens
+       */
+        $messages = [
+            'need.required' => 'O campo Descrição da GEPEX é de preenchimento obrigatório',
+            'price.required' => ' campo Orçamento Aproximado é de preenchimento obrigatório',
+            'completion_date.required' => 'O campo Data para Conclusão é de preenchimento obrigatório',
+            'priority.required' => 'O campo Nível de Prioridade é de pereenchimento obrigatório',
+
+
+        ];
+        /*
+       * Validação
+       */
+
+        $validate = validator($data, $this->rules, $messages);
+        if ($validate->fails()) {
+            return redirect()->route('gepex-secretaria-create', $id)
+                ->withErrors($validate)
+                ->withInput();
+        }
+
+        $gepex->update([
+            
+            'needs' => $data['needs'],
+
+            'priority' =>  $data['priority'],
+            'completion_date' => $data['completion_date'],
+            'price' => convertPrice($data['price']),
+            
+        ]);
+
+        return redirect()->route('gepex-secretaria', $gepex->secretary->id);
+
+
+     
     }
 
     /**
