@@ -368,6 +368,29 @@ $gepex = Gepex::find($id);
 
         return view('admin.gepexes.ver-etapas', compact('gepex', 'steps'));
     }
+    public function enumerar_etapas($id)
+    {
+        $gepex = Gepex::find($id);
+        $steps = $gepex->steps;
+
+
+        return view('admin.gepexes.enumerar-etapas', compact('gepex', 'steps'));
+    }
+
+    public function enumerar_etapas_store($id, Request $request)
+    {
+        $gepex = Gepex::find($id);
+    $ordens = $request->ordem;
+
+    foreach ($ordens as $key => $value) {
+            $gepex->steps()->updateExistingPivot($key, [
+                'order' => $value
+            ]);
+    }
+        $gepex = Gepex::find($id);
+        $steps = $gepex->steps;
+        return view('admin.gepexes.enumerar-etapas', compact('gepex', 'steps'));
+    }
 
     public function concluir_etapa($id, $etapaid, Request $request)
     {

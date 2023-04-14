@@ -67,6 +67,12 @@
                                                 <span class="glyphicon glyphicon-hand-up"></span> Definir Etapas</a>
 
                                                 @endif
+                                            @if($gepex->status=='APROVADO')
+                                               
+                                            <a href="{{route('gepex-enumerar-etapas',$gepex->id)}}" class="btn btn-info">
+                                                <span class="glyphicon glyphicon-hand-up"></span> Enumerar Etapas</a>
+
+                                                @endif
 
                                         </td>
                                        

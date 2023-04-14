@@ -19,6 +19,7 @@ class GepexStep extends Migration
                 $table->increments('id');
                 $table->unsignedBigInteger('gepex_id');
                 $table->unsignedBigInteger('step_id');
+                $table->unsignedBigInteger('order')->nullable();
                 $table->integer('finished')->default('0');;
                 $table->date('completion_date')->nullable();
                 $table->date('prevision_date')->nullable();

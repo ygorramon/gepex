@@ -64,6 +64,9 @@ Route::prefix('admin')->middleware('can:secretaria')->group(
     Route::get('/gepex/{id}/definir_etapas', 'GepexController@defenir_etapas')->middleware('auth')->name('gepex-defenir-etapas');
     Route::post('/gepex/{id}/definir_etapas', 'GepexController@defenir_etapas_store')->middleware('auth')->name('gepex-defenir-etapas-post');
     Route::get('/gepex/{id}/ver_etapas', 'GepexController@ver_etapas')->middleware('auth')->name('gepex-ver-etapas');
+    Route::get('/gepex/{id}/enumerar_etapas', 'GepexController@enumerar_etapas')->middleware('auth')->name('gepex-enumerar-etapas');
+    Route::post('/gepex/{id}/enumerar_etapas', 'GepexController@enumerar_etapas_store')->middleware('auth')->name('gepex-enumerar-etapas-store');
+    Route::get('/gepex/{id}/enumerar_etapas', 'GepexController@enumerar_etapas')->middleware('auth')->name('gepex-enumerar-etapas');
     Route::post('/gepex/{id}/etapa/{etapaid}/concluir', 'GepexController@concluir_etapa')->middleware('auth')->name('concluir-etapa');
     Route::post('/gepex/{id}/etapa/{etapaid}/nova_data', 'GepexController@nova_data')->middleware('auth')->name('nova-data-etapa');
   }
