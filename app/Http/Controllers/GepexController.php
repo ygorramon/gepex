@@ -335,7 +335,7 @@ $gepex = Gepex::find($id);
     public function defenir_etapas($id)
     {
         $gepex = Gepex::find($id);
-        $steps_todos = Step::all();
+        $steps_todos = Step::orderBy('name')->get();
         $steps_selecionados = $gepex->steps;
 
        
@@ -371,8 +371,8 @@ $gepex = Gepex::find($id);
     public function enumerar_etapas($id)
     {
         $gepex = Gepex::find($id);
-        $steps = $gepex->steps;
-
+        $steps = $gepex->steps()->orderBy('name')->get();
+       
 
         return view('admin.gepexes.enumerar-etapas', compact('gepex', 'steps'));
     }
