@@ -33,7 +33,7 @@
                                     <th width="10%" class="sorting" tabindex="0" aria-controls="example2"
                                         rowspan="1" colspan="1" aria-label="city: activate to sort column ascending">
                                         STATUS</th>
-                                    <th width="10%" class="sorting" tabindex="0" aria-controls="example2"
+                                    <th class="sorting" tabindex="0" aria-controls="example2"
                                         rowspan="1" colspan="1" aria-label="city: activate to sort column ascending">
                                         NÍVEL</th>
 
@@ -65,6 +65,9 @@
                                                
                                             <a href="{{route('gepex-defenir-etapas',$gepex->id)}}" class="btn btn-info">
                                                 <span class="glyphicon glyphicon-hand-up"></span> Redefinir Etapas / Prazo</a>
+                                                <br>
+                                            <a href="{{route('gepex-enumerar-etapas',$gepex->id)}}" class="btn btn-warning">
+                                                <span class="glyphicon glyphicon-hand-up"></span> Reordenar Etapas / Prazo</a>
 
                                                
 
