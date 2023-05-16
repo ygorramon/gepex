@@ -12,7 +12,7 @@
 <div class="row">
 <div class="col-lg-3 col-6">
 
-<div class="small-box" style="background-color: #c6e6e4">
+<div class="small-box" style="background-color: #4aafa9">
 <div class="inner">
 <h3>GEPEX</h3>
 <p>Minhas GEPEXs</p>
@@ -46,7 +46,7 @@ Acessar <i class="fas fa-arrow-circle-right"></i>
 @can('prefeito')
 <div class="col-lg-3 col-6">
 
-<div class="small-box" style="background-color: #19817a">
+<div class="small-box" style="background-color: #4aafa9">
 <div class="inner">
 <h3>{{App\Models\Gepex::where('status', 'APROVADO')->count()}}</h3>
 <p>GEPEX APROVADAS</p>
@@ -62,7 +62,7 @@ Acessar <i class="fas fa-arrow-circle-right"></i>
 
 <div class="col-lg-3 col-6">
 
-<div class="small-box" style="background-color: #0e3e3a">
+<div class="small-box" style="background-color: #4aafa9">
 <div class="inner">
 <h3>{{App\Models\Gepex::where('status', 'EM EXECUÇÃO')->count()}}</h3>
 <p>GEPEX EM EXECUÇÃO</p>
