@@ -43,6 +43,7 @@ class EventServiceProvider extends ServiceProvider
                     'icon' => 'fas fa-duotone fa-map-pin',
                     'can' => 'prefeito',
                     'label' => Gepex::where('status', 'FINALIZADO')->count(),
+                    'label_color' => 'info'
 
 
 
@@ -53,6 +54,7 @@ class EventServiceProvider extends ServiceProvider
                     'icon' => 'fas fa-upload',
                     'can' => 'prefeito',
                     'label' => Gepex::where('status', 'EM EXECUÇÃO')->count(),
+                    'label_color' => 'info'
                 ]);
                 $event->menu->addAfter('menu',[
                     'text' => 'GEPEX Aprovadas',
@@ -60,6 +62,7 @@ class EventServiceProvider extends ServiceProvider
                     'icon' => 'fas fa-download',
                     'can' => 'prefeito',
                     'label' => Gepex::where('status', 'APROVADO')->count(),
+                    'label_color' => 'info'
                 ]);
 
                 $event->menu->addAfter('menu', [
@@ -68,6 +71,7 @@ class EventServiceProvider extends ServiceProvider
                     'icon' => 'fas fa-upload',
                     'can' => 'prefeito',
                     'label' => Gepex::where('status', 'ENVIADO')->count(),
+                    'label_color' => 'info'
 
 
 

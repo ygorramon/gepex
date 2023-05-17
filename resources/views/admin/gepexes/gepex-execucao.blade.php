@@ -50,8 +50,17 @@
                                         <td> {{ $gepex->secretary->name }} </td>
                                         <td> <span
                                                 class="badge {{ setStatus($gepex->status)->color }}">{{ setStatus($gepex->status)->value }}</span>
-                                            @if($gepex->status=='APROVADO')
-                                        <b>Quantidade de Etapas:</b> {{count($gepex->steps)}}
+                                          @if ($gepex->status == 'EM EXECUÇÃO' || $gepex->status == 'FINALIZADO')
+                                            <div class="progress-group">
+                                                Etapas Completas <span
+                                                    class="float-right"><b>{{ count($gepex->steps->where('pivot.finished', '=', 1)) }}</b>/{{ count($gepex->steps) }}</span>
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-success"
+                                                        style="width: {{ percent($gepex) }}%"></div>
+                                                </div>
+                                                <br>
+                                                
+                                            </div>
                                         @endif
                                         </td> </td>
                                         <td> <span class="badge {{ setPriority($gepex->priority)->color }}">{{ setPriority($gepex->priority)->value }}</span> 
@@ -63,13 +72,24 @@
                                                 @endif
                                           
                                                
-                                            <a href="{{route('gepex-defenir-etapas',$gepex->id)}}" class="btn btn-info">
-                                                <span class="glyphicon glyphicon-hand-up"></span> Redefinir Etapas / Prazo</a>
-                                                <br>
-                                            <a href="{{route('gepex-enumerar-etapas',$gepex->id)}}" class="btn btn-warning">
-                                                <span class="glyphicon glyphicon-hand-up"></span> Reordenar Etapas / Prazo</a>
+                                            
+                                               @if ($gepex->status == 'EM EXECUÇÃO' || $gepex->status == 'FINALIZADO')
+                                      
 
-                                               
+                                         
+                                           
+                                       <div class="btn-group">
+<button type="button" class="btn btn-warning">Ações</button>
+<button type="button" class="btn btn-warning dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
+<span class="sr-only">Toggle Dropdown</span>
+</button>
+<div class="dropdown-menu" role="menu" style="">
+<a class="dropdown-item" href="{{route('gepex-defenir-etapas',$gepex->id)}}">Redefinir Etapas / Prazo</a>
+ <a class="dropdown-item" href="{{route('gepex-enumerar-etapas',$gepex->id)}}">Reordenar Etapas / Prazo</a>
+<a class="dropdown-item" href="{{ route('gepex-ver-etapas', $gepex->id) }}">Ver Etapas</a>
+
+</div>
+                                    @endif
 
                                         </td>
                                        
